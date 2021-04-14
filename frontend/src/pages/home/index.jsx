@@ -16,7 +16,6 @@ export default function Index(props) {
                     </div>
                 </div>
             </header>
-
             <main role="main">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">

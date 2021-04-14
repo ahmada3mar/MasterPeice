@@ -1,0 +1,23 @@
+.left-side{
+
+  background-image: url('https://www.orange.jo/SSologin/SSOContent/PublishingImages/osn.png');
+  color :white;
+  background-size:cover;
+  background-position: center;
+  
+}
+
+
+#email:focus{
+  border: orange 2px solid;
+}
+#email:focus ~ #labelEmail{
+  color: orange;
+}
+
+#password:focus{
+  border: orange 2px solid;
+}
+#password:focus ~ #labelpassword{
+  color: orange;
+}

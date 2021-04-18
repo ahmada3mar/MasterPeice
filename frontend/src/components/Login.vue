@@ -1,6 +1,9 @@
 <template>
+
+
    <div class="row h-100 flex-grow-1 m-0">
-         
+        
+
             <div class="left-side  col-4 p-0">
                 <div style="padding:50px 35px">
                     <img width="70" src="../assets/logo.png" alt="Orange Logo" />
@@ -15,27 +18,56 @@
                 <div class="form col-8">
                     <h2 class="mb-5">Sign in to <span class="text-primary">Orange</span></h2>
                     <div class="d-flex flex-column-reverse  mb-3">
-                        <input type="email"  class="form-control" id="email" />
+                        <input v-model="email" type="email"  class="form-control" id="email" />
                         <label id="labelEmail" htmlFor="email">Email</label>
                     </div>
                     <div class="d-flex flex-column-reverse  mb-3">
-                        <input  type="password" class="form-control" id="password" />
+                        <input v-model="password"  type="password" class="form-control" id="password" />
                         <label id="labelpassword" htmlFor="password">Password</label>
                     </div>
-                    <div  class="btn btn-primary col-12 justify-content-center  mb-3">Login</div>
+                    <div v-on:click="login"  class="btn btn-primary col-12 justify-content-center  mb-3">Login</div>
+                    <div v-on:click="test"  class="btn btn-primary col-12 justify-content-center  mb-3">{{store.state.count}}</div>
                     <Link class="text-primary" to="#">Forget Password ?</Link>
+                    <router-link to="/foo">Go to Foo</router-link>
                 </div>
+         </div>
             </div>
-        </div>
+
 
 </template>
 
 <script>
+import {store} from "../store/store.js"
+import axios from "axios";
+axios.defaults.withCredentials = true;
 export default {
   name: 'Login',
   props: {
     msg: String
   },
+  data(){
+    return {
+      store:store,
+      email:"",
+      password:""
+    }
+    },
+    methods:{
+      login:function(){
+      
+      axios.post('http://localhost:8000/login',{email:this.email , password:this.password}).then(
+        (res)=>{this.store.state.user=res.data;this.$router.push('/foo')}
+     
+      )
+      },
+      test:function (){
+        axios.post("http://localhost:8000/logout").then(()=>this.store.state.user={})
+
+        }
+      }
+    
+          
+          
   
 }
 </script>

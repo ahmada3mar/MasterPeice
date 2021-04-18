@@ -1,21 +1,29 @@
 
 
 <template>
- <div class="bodyfull d-flex flex-column flex-grow-1">
-    <Login/>
+ <div  class="bodyfull d-flex flex-column flex-grow-1">
+   <router-view ></router-view>
+  
     </div>
    
  
 </template>
 
 <script>
-import Login from './components/Login.vue'
+// import Login from './components/Login.vue'
+
+import {store} from "./store/store"
+// import axios from "axios"
 
 export default {
   name: 'App',
-  components: {
-    Login
-  }
+  data(){
+    return{
+      store:store
+    }},
+
+    
+  
 }
 </script>
 

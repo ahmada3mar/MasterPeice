@@ -5,7 +5,8 @@ Vue.use(Vuex);
 const UPDATE_USERS = 'UPDATE_USERS'
 export const store = new Vuex.Store({
     state: {
-        user: {}
+        user: {},
+        loading:true,
     },
     mutations: {
         [UPDATE_USERS](state, users) {

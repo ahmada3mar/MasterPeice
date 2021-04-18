@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 import {store} from "../store/store.js"
 
 
@@ -21,8 +22,8 @@ export default {
       data:""
     }
     },
-    
-   
-  
+    mounted:function(){
+      !this.store.state.user.id ? this.$router.push('/'):null;
+    }
 }
 </script>

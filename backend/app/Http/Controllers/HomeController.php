@@ -16,10 +16,10 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-    public function user()
+    public function user(Request $request)
     {
         
-        return auth()->user() ? auth()->user() : ['msg' => 'error'];
+        return $request->user();
     }
   
     /**

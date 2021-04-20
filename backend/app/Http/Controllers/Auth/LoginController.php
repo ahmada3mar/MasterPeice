@@ -40,6 +40,7 @@ class LoginController extends Controller
    
     public function login(Request $request)
     {   
+     
         $input = $request->all();
   
         $this->validate($request, [
@@ -49,13 +50,13 @@ class LoginController extends Controller
    
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            if (auth()->user()->is_admin == 1) {
+          
                 return auth()->user();
-            }else{
-                return auth()->user();
-            }
+            
         }else{
-            return ['error'=>'somthing wrong'] ;
+            return response()->json([
+                'message' => 'Page Not Found. If error persists, contact info@website.com'], 401) ;
+        
         }
           
     }

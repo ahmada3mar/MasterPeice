@@ -1,5 +1,5 @@
 <template>
-  <div class="row m-0">
+  <div class="container d-inline-flex flex-wrap m-0">
     <div class="col-lg-6">
       <div class="card mb-4">
         <div class="card-header">
@@ -20,8 +20,8 @@
           <i class="fas fa-chart-bar mr-1"></i>
           Bar Chart Example
         </div>
-        <div class="card-body">
-          <canvas id="customtestsChartpi" width="100%" height="50"></canvas>
+        <div  class="card-body d-inline-flex justify-content-center">
+          <canvas id="a5"  ></canvas>
         </div>
         <div class="card-footer small text-muted">
           Updated yesterday at 11:59 PM
@@ -35,7 +35,7 @@
           Bar Chart Example
         </div>
         <div class="card-body">
-          <canvas id="customtestsChartpi" width="100%" height="50"></canvas>
+          <canvas id="customtestsChartpi2" width="100%" height="30"></canvas>
         </div>
         <div class="card-footer small text-muted">
           Updated yesterday at 11:59 PM
@@ -54,34 +54,76 @@ export default {
     new Chart("customtestsChartpi", {
       type: "bar",
       data: {
-        labels: ["Normal", "Hypo", "Hyper"],
+        labels: ["Normal", "Hypo", "Hyper", 'test'],
         datasets: [
           {
             label: "Female ",
-            data: [5, 5 + 7, 5 + 4],
-            backgroundColor: ["green", "yellow", "red"],
-            borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(255, 99, 132, 1)",
-              "rgba(255, 99, 132, 1)",
-              "rgba(255, 99, 132, 1)",
-            ],
+            data: [5, 5 + 7, 5 + 4 , 7],
+            backgroundColor: ["orange", "#4bb4e6", "#ffb4e6" , '#a885d8'],
+           
             borderWidth: 1,
           },
-          {
-            label: "Male ",
-            data: [9, 9 + 1, 9 + 8],
-            backgroundColor: ["lightgreen", "lightyellow", "darksalmon"],
-            borderColor: [
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(54, 162, 235, 1)",
-            ],
-            borderWidth: 1,
-          },
+         
         ],
       },
       options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
+    new Chart("customtestsChartpi2", {
+      type: "line",
+      data: {
+        labels: ["Normal", "Hypo", "Hyper", 'test',"Normal", "Hypo", "Hyper", 'test'],
+        datasets: [
+          {
+            label: "Female ",
+            data: [5, 5 + 7, 5 + 4 , 7,5, 5 + 7, 5 + 4 , 7],
+            backgroundColor: ["orange"],
+           
+            borderWidth: 1,
+            fill:'start'
+          },
+         
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
+    new Chart("a5", {
+      type: "bar",
+      data: {
+        labels: ["Normal", "Hypo"],
+        datasets: [
+          {
+            label: "Female ",
+            data: [5, 5 + 7],
+            backgroundColor: ["orange"],
+           
+            borderWidth: 1,
+          
+          },
+         
+        ],
+      },
+      options: {
+         indexAxis: 'y',
         scales: {
           yAxes: [
             {

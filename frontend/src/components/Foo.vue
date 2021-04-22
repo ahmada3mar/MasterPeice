@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .left-sidedashboard{
   /* height: 100%; */
-  width: 18%;
+  width: 15vw;
 }
 .incontent{
    display: inline-flex;

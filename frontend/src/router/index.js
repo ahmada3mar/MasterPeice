@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/Login'
 import Foo from '../components/Foo'
-import Home from "../pages/home/Index"
+import Trainees from "../pages/home/Index"
 import Dashboard from "../pages/home/Dashboard"
+import Home from "../pages/home/public/index"
 // import Navbar from "../components/Navbar"
 
 
@@ -17,16 +18,16 @@ export default new Router({
         component: Foo,
         children: [
           { path: '/admin/trainees',
-           component: Home ,
+           component: Trainees ,
           },
           { path: '/admin/admins',
-           component: Home ,
+           component: Trainees ,
           },
           { path: '/admin/contents',
-           component: Home ,
+           component: Trainees ,
           },
           { path: '/admin/events',
-           component: Home ,
+           component: Trainees ,
           },
           { path: '/',
            component: Dashboard ,

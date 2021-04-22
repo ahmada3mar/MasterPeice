@@ -1,10 +1,14 @@
 <template>
 <div>
+ 
+
+  <div class="container">
+    <div class="row m-0 bg-light col-12">
+
+    </div>
+
+  </div>
   
-   <div class="x_content">
-                    <canvas id="lineChart"></canvas>
-                  </div>
- <router-link to="/login">Go to Foo</router-link>
 </div>
 </template>
 
@@ -15,5 +19,4 @@ export default {
  
   name: "Home",
 }
-</script>
 

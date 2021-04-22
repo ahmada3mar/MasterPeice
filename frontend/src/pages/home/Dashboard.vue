@@ -54,12 +54,12 @@ export default {
     new Chart("customtestsChartpi", {
       type: "bar",
       data: {
-        labels: ["Normal", "Hypo", "Hyper", 'test'],
+        labels: ["Normal", "Hypo", "Hyper", 'test' , 'jb'],
         datasets: [
           {
             label: "Female ",
-            data: [5, 5 + 7, 5 + 4 , 7],
-            backgroundColor: ["orange", "#4bb4e6", "#ffb4e6" , '#a885d8'],
+            data: [5, 5 + 7, 5 + 4 , 7 , 8],
+            backgroundColor: ["#4bb4e6","#50be87", "#ffb4e6" , '#a885d8' , '#ffd200'],
            
             borderWidth: 1,
           },
@@ -81,16 +81,19 @@ export default {
     new Chart("customtestsChartpi2", {
       type: "line",
       data: {
-        labels: ["Normal", "Hypo", "Hyper", 'test',"Normal", "Hypo", "Hyper", 'test'],
+        labels: ["Amman", "Mafraq", "Zarqa", 'Aqaba',"Irbid", "Karak", "Tafeleh", 'Maaan' , 'Salt' , 'Jarash' , 'Ajlon' , 'Maadba'],
         datasets: [
           {
             label: "Female ",
-            data: [5, 5 + 7, 5 + 4 , 7,5, 5 + 7, 5 + 4 , 7],
+            data: [5,0,2,1,5,0,4,3,4,0,3,0,0],
             backgroundColor: ["orange"],
            
             borderWidth: 1,
-            fill:'start'
+            fill:'start',
+        tension: 0.1,
+          legend: {display: false},
           },
+
          
         ],
       },
@@ -114,7 +117,7 @@ export default {
           {
             label: "Female ",
             data: [5, 5 + 7],
-            backgroundColor: ["orange"],
+            backgroundColor: ["#b5e8f7" ,'#ffe8f7'],
            
             borderWidth: 1,
           

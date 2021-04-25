@@ -11,11 +11,7 @@
     "axios": "^0.21.1",
     "boosted": "^4.6.0",
     "chart.js": "^3.1.1",
-<<<<<<< HEAD
-    "chokidar": "^3.5.1",
-=======
     "chartjs": "^0.3.24",
->>>>>>> a3ec4cb68f2938ce5c500bbb39788864c06db5e2
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",

@@ -1,9 +1,23 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Router from 'vue-router'
+import { BootstrapVue } from 'bootstrap-vue'
+import { TablePlugin } from 'bootstrap-vue'
+import Calendar from 'v-calendar/lib/components/calendar.umd'
+import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 
+// Register components in your 'main.js'
+Vue.component('v-calendar', Calendar)
+Vue.component('v-date-picker', DatePicker)
+Vue.use(Router)
 
+// main.js
 
+// Register components in your 'main.js'
+
+Vue.use(TablePlugin)
+Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
@@ -12,5 +26,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App } 
+  components: { App   } 
 })

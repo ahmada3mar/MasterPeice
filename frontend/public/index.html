@@ -1,33 +1,57 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-<!-- Copyright © 2014 Monotype Imaging Inc. All rights reserved -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/orangeHelvetica.min.css" integrity="sha384-ZWV5rANfkZIt/7HDFToWXT+5LfpEbtDN22vw9WhARiDc+o6zJ4qxwdTwskCbe8NK" crossorigin="anonymous">
-<!-- Copyright © 2016 Orange SA. All rights reserved -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/orangeIcons.min.css" integrity="sha384-7/+XhgsfiKJOYwQYLCI6P8bz89YJEKD2GLErv3KrHbxQ4wPcJ9JcqVZVKAglgBJP" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/boosted.min.css" integrity="sha384-gqlCljYk+czxYG/OEUHPObOqdFdx4RFpXrAy+z6dbWdeD1ybOujFGA+lKVLnXtxx" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Orange Coding Academy</title>
 
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- Preconnect to CDNs: remove if not needed -->
+    <link rel="preconnect" href="https://code.jquery.com" crossorigin="anonymous">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href='https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!--
+      Neue Helvetica is a trademark of Monotype Imaging Inc. registered in the U.S.
+      Patent and Trademark Office and may be registered in certain other jurisdictions.
+      Copyright © 2014 Monotype Imaging Inc. All rights reserved.
+      Orange has purchased the right to use Helvetica in its websites and mobile applications.
+      If you are not authorized to used it, don't include the orangeHelvetica.css.
+      See NOTICE.txt for more information.
+    -->
+    <link rel="preload" href="fonts/HelvNeue55_W1G.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="fonts/HelvNeue75_W1G.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/orangeHelvetica.min.css" integrity="sha384-ZWV5rANfkZIt/7HDFToWXT+5LfpEbtDN22vw9WhARiDc+o6zJ4qxwdTwskCbe8NK" crossorigin="anonymous">
+    <!--
+      Orange Icons
+      Copyright (C) 2016 - 2019 Orange SA All rights reserved
+      See NOTICE.txt for more information.
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/orangeIcons.min.css" integrity="sha384-7/+XhgsfiKJOYwQYLCI6P8bz89YJEKD2GLErv3KrHbxQ4wPcJ9JcqVZVKAglgBJP" crossorigin="anonymous">
+
+    <!-- Boosted CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/css/boosted.min.css" integrity="sha384-gqlCljYk+czxYG/OEUHPObOqdFdx4RFpXrAy+z6dbWdeD1ybOujFGA+lKVLnXtxx" crossorigin="anonymous">
   </head>
-  <body >
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+  <body>
+  <div id="app"></div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Boosted Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/js/boosted.bundle.min.js" integrity="sha384-8GY/c7MOtsvb9OfczW1hZlZfhibvBlgxQshIoFKoTIuruwcGG4a3lGw5wdBTBocN" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper, and Boosted JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tablesorter@2.31.3/dist/js/jquery.tablesorter.min.js" integrity="sha384-+PEWXCk8F17zxsQsEjkuHjUN4yFMHv03eKxKLrqwDql8FJQM0NeSvHRZFVLfXyn7" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@4.5.1/dist/js/swiper.min.js" integrity="sha384-llVNZVxgabZyf5ZeGs3m2QcNbEE0UK1PBKM6ZoJmWK5BuBpqZUXpN1nWXd0SrAC5" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/js/boosted.min.js" integrity="sha384-iNhsKqieEna23DDrKXyI9Ze4CeR2yIykw8gQ/AHcSSZTASt2jt+YQdOqqcos7vJI" crossorigin="anonymous"></script>
+    -->
   </body>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/js/boosted.bundle.min.js" integrity="sha384-8GY/c7MOtsvb9OfczW1hZlZfhibvBlgxQshIoFKoTIuruwcGG4a3lGw5wdBTBocN" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/tablesorter@2.31.3/dist/js/jquery.tablesorter.min.js" integrity="sha384-+PEWXCk8F17zxsQsEjkuHjUN4yFMHv03eKxKLrqwDql8FJQM0NeSvHRZFVLfXyn7" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@4.5.1/dist/js/swiper.min.js" integrity="sha384-llVNZVxgabZyf5ZeGs3m2QcNbEE0UK1PBKM6ZoJmWK5BuBpqZUXpN1nWXd0SrAC5" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/boosted@4.6.0/dist/js/boosted.min.js" integrity="sha384-iNhsKqieEna23DDrKXyI9Ze4CeR2yIykw8gQ/AHcSSZTASt2jt+YQdOqqcos7vJI" crossorigin="anonymous"></script>
-<script src="/chart.js"></script>
-
-
 </html>

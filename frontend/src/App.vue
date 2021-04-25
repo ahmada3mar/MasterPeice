@@ -118,6 +118,7 @@
 import { store } from "./store/store";
 import Navbar from "./components/Navbar"
 
+
 export default {
   name: "App",
   data() {

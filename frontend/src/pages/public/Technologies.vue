@@ -13,26 +13,14 @@
 				</div>
 			</div>
 			<div class="col-4 d-none d-md-block ">
-				<img class="col-12" src="../../assets/technology.png" alt="" />
+				<img
+					class="col-12"
+					src="../../assets/technology.png"
+					alt="Technology"
+				/>
 			</div>
 		</div>
 
-		<!-- <div class="container">
-			<div class="head">
-				<div class="paraghraph">
-					<h1 class="title">Orange Coding Academy</h1>
-					<p class="description">
-						The demand for programmers is increasing in local, regional, and
-						global labor markets, but there is a shortage of qualified
-						candidates. So, we took on our shoulders the mission of qualifying a
-						new generation of programmers.
-					</p>
-				</div>
-				<div class="images">
-					<img class="col-12" src="../../assets/technology.png" alt="" />
-				</div>
-			</div>
-		</div> -->
 		<div class="row mt-4  mx-0">
 			<Card />
 		</div>
@@ -44,7 +32,9 @@ import Card from "../../components/Cards.vue";
 
 export default {
 	name: "Tchnologies",
-	data() {},
+	data() {
+		return {};
+	},
 	components: { Card },
 };
 </script>

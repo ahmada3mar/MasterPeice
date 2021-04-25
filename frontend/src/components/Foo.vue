@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<div class="homcontainer d-flex">
 		<div class="left-sidedashboard bg-secondary">
 			<Nav />
@@ -7,6 +8,17 @@
 			<router-view />
 		</div>
 	</div>
+=======
+<div class="homcontainer d-flex  mx-0 p-0">
+<div class="left-sidedashboard bg-secondary col-2">
+ <Nav/>
+</div>
+<div style="background:#f2f2f2"  class="content col-10">
+  
+   <router-view/>
+</div>
+</div>
+>>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
 </template>
 
 <script>
@@ -32,6 +44,7 @@ export default {
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 .left-sidedashboard {
 	/* height: 100%; */
 	width: 15vw;
@@ -49,4 +62,9 @@ export default {
 .homcontainer {
 	flex-grow: 1;
 }
+=======
+
+
+
+>>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
 </style>

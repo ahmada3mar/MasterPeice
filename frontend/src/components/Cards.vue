@@ -58,7 +58,13 @@
 <script>
 export default {
 	name: "Cards",
+<<<<<<< HEAD
 	data() {},
+=======
+	data() {
+		return{}
+	},
+>>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
 };
 </script>
 

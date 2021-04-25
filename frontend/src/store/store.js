@@ -22,8 +22,9 @@ export const store = new Vuex.Store({
     },
 
     actions: {
-        getUser() {
-          return  axios.get("http://localhost:8000/login").then((res)=> console.log(res.data) )}}
+        async getUser() {
+          const res = await axios.get("http://localhost:8000/login");
+        return console.log(res.data);}}
           
         
       

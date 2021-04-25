@@ -28,44 +28,25 @@
 					</router-link>
 				</li>
 				<li class="nav-item">
-<<<<<<< HEAD
-					<router-link class="nav-link" to="Technologies">
-=======
 					<router-link class="nav-link" to="/Technologies">
->>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
 						Technologies
 					</router-link>
 				</li>
 				<li class="nav-item">
-<<<<<<< HEAD
-					<router-link class="nav-link" to="AboutUs">
-=======
 					<router-link class="nav-link" to="/AboutUs">
->>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
 						About Us
 					</router-link>
 				</li>
 				<li class="nav-item">
-<<<<<<< HEAD
-					<router-link class="nav-link" to="ContactUs">
-=======
 					<router-link class="nav-link" to="/ContactUs">
->>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
 						Contact Us
 					</router-link>
 				</li>
 			</ul>
 			<form class="form-inline">
-<<<<<<< HEAD
-				<button class="btn btn-secondary btn-inverse" type="button">
-					Sign In
-				</button>
-=======
 				<router-link class="btn btn-secondary btn-inverse" to="/login">
-						Sign In
-					</router-link>
-				
->>>>>>> 968399f15ce65f7310a6db9cc853e6156d2ae79c
+					Sign In
+				</router-link>
 			</form>
 		</div>
 	</nav>

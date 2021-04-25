@@ -68,31 +68,40 @@
         </b-col>
       </b-row>
     </div>
- <transition name="fade">
-   <div>
+    <div v-if="show" v-on:click="show=false" class="overlayer"/>
+ <transition name="list">
 
-<div v-if="show" v-on:click="show=false" class="overlayer"></div>
+
     <div v-if="show" class="my-modal">
+     
+<div class="col">
+
       <h4>Add Events</h4>
       <label class="mt-2" for="name">Title</label>
       <input id="name" name="title" v-model="title" type="text" class="form-control" />
       <label class="mt-2" for="email">Description</label>
       <textarea id="description" name="description" v-model="description" class="form-control" ></textarea>
-      <div class="row col-12 px-0">
+</div>
+     
+     
+      <div class="row col-12 px-0 mx-0">
+    
+        
         <div class="col-6">
-
-         <label class="mt-2" >From</label>
+         <label class="mt-2 w-100" >From</label>
         <vue-timepicker  v-model="timeFrom"></vue-timepicker>
         </div>
-        <div class="col-6">
 
-         <label class="mt-2" >To</label>
-        <vue-timepicker v-model="timeTo"></vue-timepicker>
+       <div class="col-6">
+         <label class="mt-2 w-100" >To</label>
+        <vue-timepicker  v-model="timeTo"></vue-timepicker>
         </div>
+
       </div>
       <div @click="addEvent" class="btn btn-primary col-12 mt-5 d-flex justify-content-center">Create</div>
     </div>
-   </div>
+
+  
  </transition>
   </div>
 </template>
@@ -329,18 +338,23 @@ export default {
   top: 0;
   left: 0;
   z-index: 500;
-  transition: all 2s ;;
+
 }
 </style>
 <style scoped>
 .active {
   background: orange !important;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.list-item {
+  display: inline-block;
+  margin-top: 0;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.list-enter-active, .list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
+  margin-top:100px ;
 }
 
 </style>

@@ -11,6 +11,7 @@ import Home from "../pages/public/PublicIndex";
 import Technologies from "../pages/public/Technologies";
 import AboutUs from "../pages/public/AboutUs";
 import ContactUs from "../pages/public/ContactUs";
+import Content from "../pages/admin/Content"
 
 
 
@@ -30,7 +31,7 @@ export default new Router({
            component: Admins ,
           },
           { path: '/admin/contents',
-           component: Trainees ,
+           component: Content ,
           },
           { path: '/admin/events',
            component: Events ,

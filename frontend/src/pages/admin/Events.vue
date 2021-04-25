@@ -199,6 +199,7 @@ export default {
           dates: new Date(year, month, 25),
         },
       ],
+      
       perPage: 10,
       currentPage: 1,
       filter: "",
@@ -332,7 +333,7 @@ export default {
 
 .overlayer{
   position:absolute;
-  background: rgba(107, 107, 107, 0.411);
+  background: rgba(0, 0, 0, 0.603);
   width: 100%;
   height: 100%;
   top: 0;

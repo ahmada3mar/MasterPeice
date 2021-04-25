@@ -1,22 +1,203 @@
 <template>
-<div>
- 
+	<div>
+		<div class="accordion p-2 mb-5 " role="tablist">
+			<b-card no-body class="mb-1">
+				<b-card-header header-tag="header" class="p-2" role="tab">
+					<b-button
+						class="bg-white text-primary"
+						block
+						v-b-toggle.accordion-1
+						variant="info"
+						>Add New Trainee</b-button
+					>
+				</b-card-header>
+				<b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
+					<b-card-body>
+						<div class="row m-0 justify-content-between">
+							<div class="col-12 col-lg-5">
+								<label class="mt-2" for="name">Full Name</label>
+								<input id="name" name="name" type="text" class="form-control" />
+								<label class="mt-2" for="email">E-Mail</label>
+								<input
+									id="email"
+									name="email"
+									type="text"
+									class="form-control"
+								/>
+								<label for="mob" class="mt-2">Phone No.</label>
+								<input id="mob" name="mobile" type="tel" class="form-control" />
+								<label class="mt-2">Orange Mobile No.</label>
+								<input name="orange_mobile" type="tel" class="form-control" />
+								<div class="row m-0">
+									<div class="col-6 pl-0">
+										<label class="mt-2">Education</label>
+										<select
+											name="education"
+											id="education"
+											class="form-control"
+										>
+											<option value="High School">High School</option>
+											<option value="High School">Diploma</option>
+											<option value="Bachelor">Bachelor</option>
+											<option value="Master">Master</option>
+										</select>
+									</div>
+									<div class="col-6 pr-0">
+										<label class="mt-2">Field</label>
+										<input
+											name="education_field"
+											type="text"
+											class="form-control"
+										/>
+									</div>
+								</div>
+							</div>
 
-  <div class="container">
-    <div class="row m-0 bg-light col-12">
+							<div class="col-12 col-lg-5">
+								<label class="mt-2" for="date">Date Of Birth</label>
+								<input id="date" name="date" type="date" class="form-control" />
+								<label class="mt-2" for="gender">E-Mail</label>
+								<select name="gender" id="gender" class="form-control">
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+								</select>
+								<label for="mob" class="mt-2">Address</label>
+								<input
+									id="Adress"
+									name="Address"
+									type="text"
+									class="form-control"
+								/>
+								<label class="mt-2">English Level</label>
+								<input name="english_level" type="text" class="form-control" />
+								<div class="row m-0">
+									<div class="col-6 pl-0">
+										<label class="mt-2">Refrence 1</label>
+										<input type="text" name="refrence1" class="form-control" />
+									</div>
+									<div class="col-6 pr-0">
+										<label class="mt-2">Refrence 2</label>
+										<input type="text" name="refrence2" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-lg-2">
+								<div
+									class="d-inline-flex flex-column col-12 h-100 align-items-center"
+								>
+									<img
+										class="col-8 col-lg-auto mt-3 "
+										src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
+										alt=""
+									/>
+									<div class="custom-file my-3">
+										<input
+											type="file"
+											class="custom-file-input"
+											id="validatedCustomFile"
+											aria-describedby="customFileValidationFeedback"
+											required
+										/>
+										<label
+											class="custom-file-label"
+											for="validatedCustomFile"
+										></label>
+									</div>
 
-    </div>
-
-  </div>
-  
-</div>
+									<div
+										class="btn btn-primary mt-auto  justify-content-center align-self-stretch"
+									>
+										Submit
+									</div>
+								</div>
+							</div>
+						</div>
+					</b-card-body>
+				</b-collapse>
+			</b-card>
+		</div>
+		<div class="p-2 bg-white">
+			<b-row class="mb-3">
+				<b-col md="3">
+					<b-form-input
+						v-model="filter"
+						type="search"
+						id="filterInput"
+						placeholder="Type to Search"
+					></b-form-input>
+				</b-col>
+			</b-row>
+			<b-row>
+				<b-col>
+					<b-table
+						striped
+						hover
+						:items="posts"
+						:filter="filter"
+						:fields="fields"
+						:per-page="perPage"
+						:current-page="currentPage"
+					>
+						<template v-slot:cell(actions)="data">
+							<b-button variant="warning mx-1" @click="deleteItem(data.item.id)"
+								>View</b-button
+							>
+							<b-button variant="danger mx-1" @click="deleteItem(data.item.id)"
+								>Delete</b-button
+							>
+						</template>
+					</b-table>
+					<b-pagination
+						v-model="currentPage"
+						:total-rows="rows"
+						:per-page="perPage"
+						aria-controls="my-table"
+					></b-pagination>
+				</b-col>
+			</b-row>
+		</div>
+	</div>
 </template>
 
 <script>
-
-
 export default {
- 
-  name: "Home",
-}
+	data() {
+		return {
+			perPage: 10,
+			currentPage: 1,
+			filter: "",
+			fields: ["userId", "id", "title", "actions"],
+			posts: [
+				{
+					id: 1,
+					title: "sunt aut facere repellat provident occaecati",
+				},
+				{
+					id: 2,
+					title: "qui est esse",
+				},
+				{
+					id: 3,
+					title: "ea molestias quasi exercitationem repellat qui",
+				},
+				{
+					id: 3,
+					title: "ea molestias quasi exercitationem repellat qui",
+				},
+			],
+		};
+	},
 
+	methods: {
+		deleteItem(id) {
+			const index = this.posts.indexOf((x) => x.id === id);
+			this.posts.splice(index, 1);
+		},
+	},
+	computed: {
+		rows() {
+			return this.posts.length;
+		},
+	},
+};
+</script>

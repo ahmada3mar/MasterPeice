@@ -6,10 +6,13 @@ import { BootstrapVue } from 'bootstrap-vue'
 import { TablePlugin } from 'bootstrap-vue'
 import Calendar from 'v-calendar/lib/components/calendar.umd'
 import DatePicker from 'v-calendar/lib/components/date-picker.umd'
+import VueTimepicker from 'vue2-timepicker'
+import 'vue2-timepicker/dist/VueTimepicker.css'
 
 // Register components in your 'main.js'
 Vue.component('v-calendar', Calendar)
 Vue.component('v-date-picker', DatePicker)
+Vue.component('vue-timepicker', VueTimepicker)
 Vue.use(Router)
 
 // main.js

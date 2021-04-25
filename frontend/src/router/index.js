@@ -2,17 +2,21 @@
 import Router from 'vue-router'
 import Login from '../components/Login'
 import Foo from '../components/Foo'
-import Trainees from "../pages/home/Index"
-import Dashboard from "../pages/home/Dashboard"
-import Home from "../pages/home/public/index"
 import Admins from "../pages/admin/Admins"
 import Events from "../pages/admin/Events"
 // import Navbar from "../components/Navbar"
+import Trainees from "../pages/admin/Trainees";
+import Dashboard from "../pages/admin/Dashboard";
+import Home from "../pages/public/PublicIndex";
+import Technologies from "../pages/public/Technologies";
+import AboutUs from "../pages/public/AboutUs";
+import ContactUs from "../pages/public/ContactUs";
 
 
 
 
 export default new Router({
+  mode: "history",
   routes: [
       {
         path: '/admin*',
@@ -37,16 +41,31 @@ export default new Router({
         
         ]
       },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
+      {
+        path: "/login",
+        name: "Login",
+        component: Login,
+      },
+      {
+        path: "/Technologies",
+        name: "Technologies",
+        component: Technologies,
+      },
+      {
+        path: "/AboutUs",
+        name: "AboutUs",
+        component: AboutUs,
+      },
+      {
+        path: "/ContactUs",
+        name: "ContactUs",
+        component: ContactUs,
+      },
+      {
+        path: "/",
+        name: "Home",
+        component: Home,
+      },
     
   ]
 })

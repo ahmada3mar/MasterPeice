@@ -1,5 +1,5 @@
 <template>
-  <div class="container d-inline-flex flex-wrap m-0">
+  <div class="container col-12 d-inline-flex flex-wrap m-0">
     <div class="col-lg-6">
       <div class="card mb-4">
         <div class="card-header">

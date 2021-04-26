@@ -3,7 +3,7 @@
 		<div class="row m-0 p-md-5 p-0 justify-content-between mb-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
-					<h1 class="title font-weight-bold ">Orange Coding Academy</h1>
+					<h1 class="title font-weight-bold ">Technologies</h1>
 					<h3 class="description mt-2">
 						The demand for programmers is increasing in local, regional, and
 						global labor markets, but there is a shortage of qualified
@@ -13,27 +13,18 @@
 				</div>
 			</div>
 			<div class="col-4 d-none d-md-block ">
-				<img class="col-12" src="../../assets/technology.png" alt="" />
+				<img
+					class="col-12"
+					src="../../assets/technology.png"
+					alt="Technology"
+				/>
 			</div>
 		</div>
 
-		<!-- <div class="container">
-			<div class="head">
-				<div class="paraghraph">
-					<h1 class="title">Orange Coding Academy</h1>
-					<p class="description">
-						The demand for programmers is increasing in local, regional, and
-						global labor markets, but there is a shortage of qualified
-						candidates. So, we took on our shoulders the mission of qualifying a
-						new generation of programmers.
-					</p>
-				</div>
-				<div class="images">
-					<img class="col-12" src="../../assets/technology.png" alt="" />
-				</div>
-			</div>
-		</div> -->
-		<div class="row mt-4  mx-0">
+		<div class="row mt-4 mx-0 justify-content-around d-inline-flex ">
+			<Card />
+			<Card />
+			<Card />
 			<Card />
 		</div>
 	</div>
@@ -45,12 +36,9 @@ import Card from "../../components/Cards.vue";
 export default {
 	name: "Tchnologies",
 	data() {
-		return {
-		
-		};
+		return {};
 	},
 	components: { Card },
-
 };
 </script>
 
@@ -83,7 +71,6 @@ export default {
 }
 .description {
 	font-weight: 300;
-
 	color: rgb(255, 255, 255);
 }
 </style>

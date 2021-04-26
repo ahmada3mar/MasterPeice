@@ -8,31 +8,33 @@
 						block
 						v-b-toggle.accordion-1
 						variant="info"
+						visable
 						>Add New Trainee</b-button
 					>
 				</b-card-header>
 				<b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
 					<b-card-body>
+						<form @submit="submit" id="traineesForm" enctype='multipart/form-data'>
 						<div class="row m-0 justify-content-between">
 							<div class="col-12 col-lg-5">
 								<label class="mt-2" for="name">Full Name</label>
-								<input id="name" name="name" type="text" class="form-control" />
+								<input required  id="name" name="name" type="text" class="form-control" />
 								<label class="mt-2" for="email">E-Mail</label>
-								<input
+								<input required
 									id="email"
 									name="email"
 									type="text"
 									class="form-control"
 								/>
 								<label for="mob" class="mt-2">Phone No.</label>
-								<input id="mob" name="mobile" type="tel" class="form-control" />
+								<input required id="mob" name="mobile" type="tel" class="form-control" />
 								<label class="mt-2">Orange Mobile No.</label>
-								<input name="orange_mobile" type="tel" class="form-control" />
+								<input required name="orange_mobile" type="tel" class="form-control" />
 								<div class="row m-0">
 									<div class="col-6 pl-0">
 										<label class="mt-2">Education</label>
 										<select
-											name="education"
+											name="education_level"
 											id="education"
 											class="form-control"
 										>
@@ -44,8 +46,8 @@
 									</div>
 									<div class="col-6 pr-0">
 										<label class="mt-2">Field</label>
-										<input
-											name="education_field"
+										<input required
+											name="field"
 											type="text"
 											class="form-control"
 										/>
@@ -55,29 +57,29 @@
 
 							<div class="col-12 col-lg-5">
 								<label class="mt-2" for="date">Date Of Birth</label>
-								<input id="date" name="date" type="date" class="form-control" />
+								<input required id="date" name="date_of_birth" type="date" class="form-control" />
 								<label class="mt-2" for="gender">E-Mail</label>
 								<select name="gender" id="gender" class="form-control">
 									<option value="male">Male</option>
 									<option value="female">Female</option>
 								</select>
 								<label for="mob" class="mt-2">Address</label>
-								<input
+								<input required
 									id="Adress"
-									name="Address"
+									name="address"
 									type="text"
 									class="form-control"
 								/>
 								<label class="mt-2">English Level</label>
-								<input name="english_level" type="text" class="form-control" />
+								<input required name="english_level" type="text" class="form-control" />
 								<div class="row m-0">
 									<div class="col-6 pl-0">
 										<label class="mt-2">Refrence 1</label>
-										<input type="text" name="refrence1" class="form-control" />
+										<input required type="text" name="refrences_1" class="form-control" />
 									</div>
 									<div class="col-6 pr-0">
 										<label class="mt-2">Refrence 2</label>
-										<input type="text" name="refrence2" class="form-control" />
+										<input required type="text" name="refrences_2" class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -87,16 +89,18 @@
 								>
 									<img
 										class="col-8 col-lg-auto mt-3 "
-										src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png"
+										v-bind:src="'http://localhost:8000/images/1619424200.png'"
 										alt=""
 									/>
 									<div class="custom-file my-3">
-										<input
+										<input required
+										name="avatar"
 											type="file"
 											class="custom-file-input"
 											id="validatedCustomFile"
 											aria-describedby="customFileValidationFeedback"
-											required
+											
+											@change="updateimg"
 										/>
 										<label
 											class="custom-file-label"
@@ -104,14 +108,16 @@
 										></label>
 									</div>
 
-									<div
+									<button
 										class="btn btn-primary mt-auto  justify-content-center align-self-stretch"
+										
 									>
 										Submit
-									</div>
+									</button>
 								</div>
 							</div>
 						</div>
+						</form>
 					</b-card-body>
 				</b-collapse>
 			</b-card>
@@ -137,6 +143,7 @@
 						:fields="fields"
 						:per-page="perPage"
 						:current-page="currentPage"
+						v-if="posts.length > 0"
 					>
 						<template v-slot:cell(actions)="data">
 							<b-button variant="warning mx-1" @click="deleteItem(data.item.id)"
@@ -147,11 +154,23 @@
 							>
 						</template>
 					</b-table>
+					<div v-else class="d-flex h-100 align-items-center justify-content-center">
+						<div class="spinner-grow text-primary" role="status">
+						<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow text-secondary" role="status">
+						<span class="sr-only">Loading...</span>
+						</div>
+						<div class="spinner-grow bg-white" role="status">
+						<span class="sr-only">Loading...</span>
+						</div>
+					</div>
 					<b-pagination
 						v-model="currentPage"
 						:total-rows="rows"
 						:per-page="perPage"
 						aria-controls="my-table"
+						v-if="posts.length > 0"
 					></b-pagination>
 				</b-col>
 			</b-row>
@@ -160,30 +179,17 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
 	data() {
 		return {
 			perPage: 10,
 			currentPage: 1,
 			filter: "",
-			fields: ["userId", "id", "title", "actions"],
+			img:'https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png',
+			fields: ["id","name" ,  "mobile","email", "orange_mobile", "gender" , "refrences_1" ],
 			posts: [
-				{
-					id: 1,
-					title: "sunt aut facere repellat provident occaecati",
-				},
-				{
-					id: 2,
-					title: "qui est esse",
-				},
-				{
-					id: 3,
-					title: "ea molestias quasi exercitationem repellat qui",
-				},
-				{
-					id: 3,
-					title: "ea molestias quasi exercitationem repellat qui",
-				},
+				
 			],
 		};
 	},
@@ -193,11 +199,33 @@ export default {
 			const index = this.posts.indexOf((x) => x.id === id);
 			this.posts.splice(index, 1);
 		},
+		submit(e){
+			e.preventDefault() ;
+			var data = new FormData(document.getElementById('traineesForm'));
+			axios.post('http://localhost:8000/addTrainee' , data).then(
+				res=>console.log(res)
+				
+			).then(err=>console.log(err))
+		},
+
+		updateimg(e){
+           const reader = new FileReader();
+              reader.readAsDataURL(e.target.files[0]);
+              reader.onloadend = () => {
+                  this.img = reader.result
+              };        
+          }
+		
 	},
 	computed: {
 		rows() {
 			return this.posts.length;
 		},
 	},
+	beforeCreate:function(){
+		axios.post('http://localhost:8000/getTrainee').then(
+				res=>this.posts=res.data
+			).then(err=>console.log(err))
+	}
 };
 </script>

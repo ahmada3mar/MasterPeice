@@ -16,7 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','is_admin' , 'api_token'
+        'name', 'email', 'password','is_admin' , 'api_token',
+        'mobile','orange_mobile' ,'education_level' , 'field',
+        'date_of_birth' , 'address' , 'english_level' , 'refrences_1' ,
+        'refrences_2' , 'gender'
     ];
 
     /**

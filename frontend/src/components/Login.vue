@@ -1,5 +1,8 @@
 <template>
-  <div v-if="!store.state.user.id && !store.state.loading"  class="bodyfull row flex-grow-1 m-0">
+  <div
+    v-if="!store.state.user.id && !store.state.loading"
+    class="bodyfull row flex-grow-1 m-0"
+  >
     <div class="left-side col-4 p-0">
       <div style="padding: 50px 35px">
         <img width="70" src="../assets/logo.png" alt="Orange Logo" />
@@ -12,7 +15,7 @@
           Watch exclusive series, Hollywood movies, Arabic series, kids’ shows,
           documentaries and more.
         </p>
-        <div class="btn btn-primary">{{this.$route.path}}</div>
+        <div class="btn btn-primary">{{ this.$route.path }}</div>
       </div>
     </div>
 
@@ -42,15 +45,21 @@
         >
           Login
         </div>
-        
+
         <router-link to="/foo">Forget Password ?</router-link>
       </div>
     </div>
-      <div >
-     
-
-        <div v-bind:style="{visibility: show ? 'visible' : 'hidden' }"  v-bind:class="{show: show}" class="modal fade" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" style="display:block"  aria-modal="true">
-   
+    <div>
+      <div
+        v-bind:style="{ visibility: show ? 'visible' : 'hidden' }"
+        v-bind:class="{ show: show }"
+        class="modal fade"
+        id="exampleModalLive"
+        tabindex="-1"
+        aria-labelledby="exampleModalLiveLabel"
+        style="display: block"
+        aria-modal="true"
+      >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -60,7 +69,7 @@
                 <span class="sr-only">Close live modal demo</span>
               </button>
             </div>
-            <div class="modal-body">{{content}}</div>
+            <div class="modal-body">{{ content }}</div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -69,27 +78,30 @@
               >
                 Close
               </button>
-              <button  @click="show = !show" type="button" class="btn btn-primary">
+              <button
+                @click="show = !show"
+                type="button"
+                class="btn btn-primary"
+              >
                 Save changes
               </button>
             </div>
           </div>
         </div>
       </div>
-    <div v-if="show" class="modal-backdrop fade show"></div>
+      <div v-if="show" class="modal-backdrop fade show"></div>
     </div>
   </div>
   <div v-else class="d-flex h-100 align-items-center justify-content-center">
-
-  <div class="spinner-grow text-primary" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
-<div class="spinner-grow text-secondary" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
-<div class="spinner-grow bg-white" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow bg-white" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
 </template>
 
@@ -108,17 +120,21 @@ export default {
       email: "",
       password: "",
       show: false,
-      content:"",
+      content: "",
     };
   },
-   mounted: function () {
-    axios.get("http://localhost:8000/getuser").then((res) => {
-      if (res.data.id) {
-        store.state.user = res.data;
-         store.state.user.is_admin ? this.$router.push("/admin") :  this.$router.push("/trainee")
-      }
-    }).catch(()=> store.state.loading = false)
-    ;
+  mounted: function () {
+    axios
+      .get("http://localhost:8000/getuser")
+      .then((res) => {
+        if (res.data.id) {
+          store.state.user = res.data;
+          store.state.user.is_admin
+            ? this.$router.push("/admin")
+            : this.$router.push("/trainee");
+        }
+      })
+      .catch(() => (store.state.loading = false));
   },
   methods: {
     login: function () {
@@ -129,12 +145,17 @@ export default {
         })
         .then((res) => {
           store.state.user = res.data;
-          store.state.user.is_admin ? this.$router.push("/admin") :  this.$router.push("/trainee")
-        }).catch(
-          (err)=>{this.show=true ; this.content="UserName or password are incorrect" ; console.log(err)}
-);
-    }
-  }
+          store.state.user.is_admin
+            ? this.$router.push("/admin")
+            : this.$router.push("/trainee");
+        })
+        .catch((err) => {
+          this.show = true;
+          this.content = "UserName or password are incorrect";
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

@@ -45,9 +45,8 @@
 			</ul>
 			<form class="form-inline">
 				<router-link class="btn btn-secondary btn-inverse" to="/login">
-						Sign In
-					</router-link>
-				
+					Sign In
+				</router-link>
 			</form>
 		</div>
 	</nav>

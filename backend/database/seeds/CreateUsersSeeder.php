@@ -19,13 +19,16 @@ class CreateUsersSeeder extends Seeder
                'name'=>'Admin',
                'email'=>'admin@oca.com',
                 'is_admin'=>'1',
+                'mobile'=>'0777777777',
                'password'=> bcrypt('123456'),
                'api_token' => Str::random(60),
+
             ],
             [
                'name'=>'User',
                'email'=>'user@oca.com',
                 'is_admin'=>'0',
+                'mobile'=>'0777777777',
                'password'=> bcrypt('123456'),
                'api_token' => Str::random(60),
             ],

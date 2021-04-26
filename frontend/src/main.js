@@ -9,6 +9,7 @@ import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 import VueTimepicker from 'vue2-timepicker'
 import 'vue2-timepicker/dist/VueTimepicker.css'
 
+
 // Register components in your 'main.js'
 Vue.component('v-calendar', Calendar)
 Vue.component('v-date-picker', DatePicker)
@@ -23,6 +24,7 @@ Vue.use(TablePlugin)
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
+
 
 /* eslint-disable no-new */
 new Vue({

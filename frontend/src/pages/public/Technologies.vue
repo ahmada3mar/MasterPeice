@@ -3,7 +3,7 @@
 		<div class="row m-0 p-md-5 p-0 justify-content-between mb-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
-					<h1 class="title font-weight-bold ">Orange Coding Academy</h1>
+					<h1 class="title font-weight-bold ">Technologies</h1>
 					<h3 class="description mt-2">
 						The demand for programmers is increasing in local, regional, and
 						global labor markets, but there is a shortage of qualified
@@ -21,7 +21,10 @@
 			</div>
 		</div>
 
-		<div class="row mt-4  mx-0">
+		<div class="row mt-4 mx-0 justify-content-around d-inline-flex ">
+			<Card />
+			<Card />
+			<Card />
 			<Card />
 		</div>
 	</div>
@@ -68,7 +71,6 @@ export default {
 }
 .description {
 	font-weight: 300;
-
 	color: rgb(255, 255, 255);
 }
 </style>

@@ -3,7 +3,7 @@
 		<div class="row m-0 p-md-5 p-0 justify-content-between mb-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
-					<h1 class="title font-weight-bold ">Conatct Us</h1>
+					<h1 class="title font-weight-bold ">About Us</h1>
 					<h3 class="description mt-2">
 						The demand for programmers is increasing in local, regional, and
 						global labor markets, but there is a shortage of qualified

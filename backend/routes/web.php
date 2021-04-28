@@ -23,3 +23,7 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 Route::get('/getuser','HomeController@user');
 Route::post('/addTrainee','HomeController@trainee');
 Route::post('/getTrainee','HomeController@getTrainees');
+Route::post('/edituser/{id}','HomeController@edituser');
+Route::post('/deleteuser/{id}','HomeController@deleteUser');
+Route::post('/addcontent','HomeController@addContent');
+Route::post('/getcontent','ContentController@index');

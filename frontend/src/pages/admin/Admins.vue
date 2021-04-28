@@ -23,21 +23,28 @@
        
       >
         <b-card-body>
+                <form
+              @submit="submit"
+              id="traineesForm"
+              enctype="multipart/form-data"
+            >
           <div class="row m-0 justify-content-between">
+        
+
             <div class="col-12 col-lg-5">
               <label class="mt-2" for="name">Full Name</label>
-              <input id="name" name="name" type="text" class="form-control" />
-              <label class="mt-2" for="email">E-Mail</label>
-              <input id="email" name="email" type="text" class="form-control" />
+              <input id="name" name="name" required type="text" class="form-control" />
+              <label class="mt-2"  for="email">E-Mail</label>
+              <input id="email" placeholder="somone@example.com" name="email" type="email" required class="form-control" />
 
             </div>
 
             <div class="col-12 col-lg-5">
             
               <label for="mob" class="mt-2">Mobile No.</label>
-              <input id="mobile" name="mobile" type="tel" class="form-control" />
+              <input id="mobile" name="mobile" type="tel" pattern="[0]{1}[7]{2}[0-9]{7}" required placeholder="077XXXXXXX" class="form-control" />
               <label class="mt-2">Role</label>
-             <select name="education" id="education" class="form-control">
+             <select name="is_admin"  class="form-control">
                     <option value="2">Admin</option>
                     <option value="1">Job Coach</option>
                    
@@ -49,21 +56,22 @@
               <div class="d-inline-flex flex-column col-12 h-100 align-items-center">
 
 
-                  <img class="col-8 col-lg-auto mt-3 " src="https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png" alt="">
+                  <img class="col-8 col-lg-auto mt-3 "  v-bind:src="img" alt="">
                     <div class="custom-file my-3">
 
-                    <input type="file" class="custom-file-input" id="validatedCustomFile" aria-describedby="customFileValidationFeedback" required>
+                    <input @change="updateimg" type="file" name="avatar" class="custom-file-input"  id="validatedCustomFile" aria-describedby="customFileValidationFeedback" required>
                     <label class="custom-file-label" for="validatedCustomFile"></label>
    
                      </div>
 
-                <div class="btn btn-primary mt-auto  justify-content-center align-self-stretch">Submit</div>
+                <button class="btn btn-primary mt-auto  justify-content-center align-self-stretch">Submit</button>
               </div>
               
               
              
             </div>
           </div>
+            </form>
         </b-card-body>
       </b-collapse>
     </b-card>
@@ -83,13 +91,22 @@
           
           :items="posts"
           :filter="filter"
-           :fields="fields"
-              :per-page="perPage"
+          :fields="fields"
+          :per-page="perPage"
+          :sortable="true"
          
           :current-page="currentPage"
         >
+         <template #cell(image)="data">
+              <img  v-bind:src="'http://localhost:8000/images/'+data.item.avatar" alt="">
+            </template>
+         <template #cell(job_title)="data">
+              {{data.item.is_admin == '1' ? 'Job Coach' : 'Admin'}}
+            </template>
          <template v-slot:cell(actions)="data">
-            <b-button variant="warning mx-1" @click="deleteItem(data.item.id)">View</b-button>
+            <router-link v-bind:to="'admins/edit/' + data.item.id">
+            <b-button variant="danger mx-1" >Edit</b-button>
+            </router-link>
             <b-button variant="danger mx-1" @click="deleteItem(data.item.id)">Delete</b-button>
           </template>
         </b-table>
@@ -107,35 +124,27 @@
 
 <script>
 
-
+import axios from "axios"
+import { store } from "../../store/store";
 export default {
  data() {
    return {
       perPage: 10,
       currentPage: 1,
+      store:store,
       filter:'',
-       fields: ["userId", "id", "title", "actions"],
+      img:"https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png",
+       fields: [
+         { key: "id", sortable: true },
+         { key: "image", sortable: true },
+         { key: "name", sortable: true },
+         { key: "email", sortable: true },
+         { key: "mobile", sortable: true },
+         { key: "job_title", sortable: true },
+         { key: "actions", sortable: true },
+       
+        ],
     posts: [
-     {
-     
-      id: 1,
-      title: "sunt aut facere repellat provident occaecati",
-     },
-     {
-     
-      id: 2,
-      title: "qui est esse",
-     },
-     {
-     
-      id: 3,
-      title: "ea molestias quasi exercitationem repellat qui",
-     },
-     {
-     
-      id: 3,
-      title: "ea molestias quasi exercitationem repellat qui",
-     },
      
     ],
    };
@@ -143,9 +152,34 @@ export default {
 
   methods: {
     deleteItem(id) {
-      const index = this.posts.indexOf((x) => x.id === id);
-      this.posts.splice(index, 1);
+      axios.post('http://localhost:8000/deleteuser/' +  id).then(()=>{
+        var index =  store.state.users.findIndex((x) => x.id == id);
+         store.state.users.splice(index, 1);
+         index = this.posts.findIndex((x) => x.id == id);
+         this.posts.splice(index, 1);
+        }
+      )
     },
+
+    submit(e) {
+      e.preventDefault();
+      var data = new FormData(document.getElementById("traineesForm"));
+      axios
+        .post("http://localhost:8000/addTrainee", data)
+        .then((res) =>{this.store.state.users.push(res.data)
+        this.posts.push(res.data)
+        })
+        .then((err) => console.log(err));
+    },
+
+     updateimg(e) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        this.img = reader.result;
+      };
+    },
+
     
   },
   computed: {
@@ -153,7 +187,17 @@ export default {
       return this.posts.length;
     },
   },
+    mounted: function () {
+      this.posts = this.store.state.users.filter(i=> i.is_admin !=0)
+      
+  },
+
 
  
 };
 </script>
+<style>
+table .flip-list-move {
+  transition: transform 1s;
+}
+</style>

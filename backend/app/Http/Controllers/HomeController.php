@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Content ;
 
 class HomeController extends Controller
 {
@@ -44,7 +45,8 @@ class HomeController extends Controller
     }
 
     function trainee(Request $request){
-   
+
+        
    
             $image = $request->file('avatar');;
             $imagename = time() . '.' . $image->extension();
@@ -52,29 +54,54 @@ class HomeController extends Controller
             $user = User::create($request->all());
             $user->avatar = $imagename;
             $user->save();
-           
-            
-           
-            // $user->mobile = $request->mobile;
-            // $user->orange_mobile = $request->orange_mobile;
-            // $user->education_level = $request->education_level;
-            // $user->field = $request->field;
-            // $user->date_of_birth = $request->date_of_birth;
-            // $user->address = $request->address;
-            // $user->english_level = $request->mame;
-            // $user->refrences_1 = $request->mame;
-            // $user->refrences_2 = $request->mame;
-            // $user->gender = $request->mame;
+
+        return $user;
+    }
+  
+    function edituser(Request $request , $id){
+
+        $user = User::find($id);
+        $image = $request->file('avatar');
+        $user->update($request->all());
+            if($image){
+                $imagename = time() . '.' . $image->extension();
+                $image->move(public_path('images'), $imagename);
+                $user->avatar = $imagename;
+                
+            }
+            $user->save();
 
         return $user;
     }
 
     function getTrainees(){
 
-        $trainees = User::where('is_admin' , 0)->get() ;
+        $trainees = User::all() ;
         // dd($trainees);
         return $trainees ;
     }
+
+    function deleteUser($id){
+
+        User::find($id)->delete() ;
+        // dd($trainees);
+        return "done" ;
+    }
+
+    function addContent(Request $request){
+
+        
+        $content = Content::create($request->all());
+         $image = $request->file('image');
+         if($image){
+             $imagename = time() . '.' . $image->extension();
+             $image->move(public_path('images'), $imagename);
+             $content->image = $imagename;
+             $content->save();
+         }
+         return $content ;
+     }
+
 
     
     

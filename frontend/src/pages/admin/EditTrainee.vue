@@ -1,18 +1,5 @@
 <template>
-  <div>
-    <div class="accordion p-2 mb-5" role="tablist">
-      <b-card no-body class="mb-1">
-        <b-card-header header-tag="header" class="p-2" role="tab">
-          <b-button
-            class="bg-white text-primary"
-            block
-            v-b-toggle.accordion-1
-            variant="info"
-            >Add New Trainee</b-button
-          >
-        </b-card-header>
-        <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
-          <b-card-body>
+<b-card-body>
             <form
               @submit="submit"
               id="traineesForm"
@@ -27,6 +14,7 @@
                     name="name"
                     type="text"
                     class="form-control"
+                    v-bind:value="user.name"
                   />
                   <label class="mt-2" for="email">E-Mail</label>
                   <input
@@ -35,6 +23,7 @@
                     name="email"
                     type="text"
                     class="form-control"
+                     v-bind:value="user.email"
                   />
                   <label for="mob" class="mt-2">Phone No.</label>
                   <input
@@ -43,6 +32,7 @@
                     name="mobile"
                     type="tel"
                     class="form-control"
+                     v-bind:value="user.mobile"
                   />
                   <label class="mt-2">Orange Mobile No.</label>
                   <input
@@ -50,6 +40,7 @@
                     name="orange_mobile"
                     type="tel"
                     class="form-control"
+                     v-bind:value="user.orange_mobile"
                   />
                   <div class="row m-0">
                     <div class="col-6 pl-0">
@@ -59,10 +50,10 @@
                         id="education"
                         class="form-control"
                       >
-                        <option value="High School">High School</option>
-                        <option value="High School">Diploma</option>
-                        <option value="Bachelor">Bachelor</option>
-                        <option value="Master">Master</option>
+                        <option :selected="user.education_level == 'High School' ? true : false " value="High School">High School</option>
+                        <option :selected="user.education_level == 'Diploma' ? true : false " value="Diploma">Diploma</option>
+                        <option :selected="user.education_level == 'Bachelor' ? true : false " value="Bachelor">Bachelor</option>
+                        <option :selected="user.education_level == 'Master' ? true : false " value="Master">Master</option>
                       </select>
                     </div>
                     <div class="col-6 pr-0">
@@ -72,6 +63,7 @@
                         name="field"
                         type="text"
                         class="form-control"
+                         v-bind:value="user.field"
                       />
                     </div>
                   </div>
@@ -85,11 +77,13 @@
                     name="date_of_birth"
                     type="date"
                     class="form-control"
+                     v-bind:value="user.date_of_birth"
                   />
-                  <label class="mt-2" for="gender">E-Mail</label>
+                  <label class="mt-2" for="gender">Gender</label>
                   <select name="gender" id="gender" class="form-control">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                      <option :selected="user.gender == 'Male' ? true : false " value="Male">Male</option>
+                      <option :selected="user.gender == 'Female' ? true : false " value="Female">Female</option>
+                   
                   </select>
                   <label for="mob" class="mt-2">Address</label>
                   <input
@@ -98,6 +92,7 @@
                     name="address"
                     type="text"
                     class="form-control"
+                     v-bind:value="user.address"
                   />
                   <label class="mt-2">English Level</label>
                   <input
@@ -105,6 +100,7 @@
                     name="english_level"
                     type="text"
                     class="form-control"
+                     v-bind:value="user.english_level"
                   />
                   <div class="row m-0">
                     <div class="col-6 pl-0">
@@ -114,6 +110,7 @@
                         type="text"
                         name="refrences_1"
                         class="form-control"
+                         v-bind:value="user.refrences_1"
                       />
                     </div>
                     <div class="col-6 pr-0">
@@ -123,6 +120,7 @@
                         type="text"
                         name="refrences_2"
                         class="form-control"
+                        v-bind:value="user.refrences_2"
                       />
                     </div>
                   </div>
@@ -138,7 +136,7 @@
                     />
                     <div class="custom-file my-3">
                       <input
-                        required
+                        
                         name="avatar"
                         type="file"
                         class="custom-file-input"
@@ -162,120 +160,32 @@
               </div>
             </form>
           </b-card-body>
-        </b-collapse>
-      </b-card>
-    </div>
-    <div class="p-2 bg-white">
-      <b-row class="mb-3">
-        <b-col md="3">
-          <b-form-input
-            v-model="filter"
-            type="search"
-            id="filterInput"
-            placeholder="Type to Search"
-          ></b-form-input>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col>
-          <b-table
-            striped
-            hover
-            :items="posts"
-            :filter="filter"
-            :fields="fields"
-            :per-page="perPage"
-            :current-page="currentPage"
-            v-if="posts.length > 0"
-          >
-            <template #cell(image)="data">
-              <img  v-bind:src="'http://localhost:8000/images/'+data.item.avatar" alt="">
-            </template>
-
-            <template v-slot:cell(actions)="data">
-             <router-link v-bind:to="'trainees/edit/' + data.item.id">
-            <b-button variant="danger mx-1" >Edit</b-button>
-            </router-link>
-              <b-button variant="danger mx-1" @click="deleteItem(data.item.id)"
-                >Delete</b-button
-              >
-            </template>
-          </b-table>
-          <div
-            v-else
-            class="d-flex h-100 align-items-center justify-content-center"
-          >
-            <div class="spinner-grow text-primary" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow text-secondary" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow bg-white" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            aria-controls="my-table"
-            v-if="posts.length > 0"
-          ></b-pagination>
-        </b-col>
-      </b-row>
-    </div>
-  </div>
 </template>
 
-<script>
-import axios from "axios";
-import {store} from "../../store/store"
-export default {
-  data() {
-    return {
-      perPage: 10,
-      currentPage: 1,
-      filter: "",
-      store:store,
-      img:
-        "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png",
-      fields: [
-		"id",
-        "image",
-        "name",
-        "email",
-        "mobile",
-        "orange_mobile",
-        "gender",
-        "refrences_1",
-        "actions",
-      ],
-      posts: [],
-    };
-  },
 
-  methods: {
-  deleteItem(id) {
-      axios.post('http://localhost:8000/deleteuser/' +  id).then(()=>{
-        var index =  store.state.users.findIndex((x) => x.id == id);
-         store.state.users.splice(index, 1);
-         index = this.posts.findIndex((x) => x.id == id);
-         this.posts.splice(index, 1);
+<script>
+import {store} from "../../store/store"
+import axios from "axios"
+export default {
+    data(){
+        return{
+            user:store.state.users.filter(i=>i.id==this.$route.params.id)[0] ,
+            img : 'http://localhost:8000/images/' + store.state.users.filter(i=>i.id==this.$route.params.id)[0].avatar
         }
-      )
     },
-    submit(e) {
+    methods:{
+         submit(e) {
       e.preventDefault();
       var data = new FormData(document.getElementById("traineesForm"));
       axios
-        .post("http://localhost:8000/addTrainee", data)
-        .then((res) =>{this.store.state.users.push(res.data)
-        this.posts.push(res.data)
+        .post("http://localhost:8000/edituser/"+this.user.id, data)
+        .then((res) =>{
+           store.state.users[store.state.users.findIndex(i=>i.id==this.user.id)] = res.data ;
+            console.log(store.state.users)
+            this.$router.push("/admin/trainees")
         })
         .then((err) => console.log(err));
     },
-
     updateimg(e) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -283,15 +193,6 @@ export default {
         this.img = reader.result;
       };
     },
-  },
-  computed: {
-    rows() {
-      return this.posts.length;
-    },
-  },
-    mounted: function () {
-      this.posts = this.store.state.users.filter(i=> i.is_admin ==0)
-      
-  },
-};
+    }
+}
 </script>

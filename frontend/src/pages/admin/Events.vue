@@ -61,7 +61,7 @@
               {{ data.item.timeTo.HH + " : "  +  data.item.timeTo.mm }}
             </template>
             <template v-slot:cell(actions)="data">
-              <b-button variant="warning mx-1" @click="deleteItem(data.item.id)"
+              <b-button variant="warning mx-1" @click="showModalEdit(data.item)"
                 >View</b-button
               >
               <b-button variant="danger mx-1" @click="deleteItem(data.item.id)"
@@ -115,7 +115,7 @@
           @click="addEvent"
           class="btn btn-primary col-12 mt-5 d-flex justify-content-center"
         >
-          Create
+          {{stateBtn}}
         </div>
       </div>
     </transition>
@@ -139,6 +139,7 @@ export default {
       description: "",
       rows: "",
       dataIncome: {},
+      stateBtn : 'Create',
 
       masks: {
         weekdays: "WWW",
@@ -184,8 +185,22 @@ export default {
 
     },
     showModal(i) {
+      this.stateBtn ="Create" ;
+      this.timeFrom= {}
+      this.timeTo= {}
+      this.title= ""
+      this.description= ""
       this.show = true;
       this.eventDate = i;
+    },
+    
+    showModalEdit(i){
+      this.showModal(i)
+      this.stateBtn ="Update" ;
+      this.timeFrom= i.timeFrom
+      this.timeTo= i.timeTo
+      this.title= i.title
+      this.description= i.description
     },
     moment,
     onChange(time, timeString) {
@@ -202,7 +217,7 @@ export default {
               title: i.title,
               class: "py-2 text-white rounded",
             },
-            dates:  i.date,
+            dates: new Date(i.date),
             
     }));
     this.posts = store.state.events ;

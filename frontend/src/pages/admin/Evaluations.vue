@@ -1,28 +1,22 @@
 <template>
-     <div class="accordion p-2 mb-5" role="tablist">
-   <ckeditor :editor="editor" ... ></ckeditor>
+    <div id="app">
+        <ckeditor :editor="editor" ></ckeditor>
     </div>
 </template>
 
-
-
-<script src="../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
-<script src="../node_modules/@ckeditor/ckeditor5-vue2/dist/ckeditor.js"></script>
 <script>
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-   
-export default {
-     name: 'app',
-        components: {
-            // Use the <ckeditor> component in this view.
-            ckeditor: CKEditor.component
-        },
+    export default {
+        name: 'app',
         data() {
             return {
                 editor: ClassicEditor,
-
-                // ...
+                editorData: '<p>Content of the editor.</p>',
+                editorConfig: {
+                    // The configuration of the editor.
+                }
             };
         }
-}
+    }
 </script>

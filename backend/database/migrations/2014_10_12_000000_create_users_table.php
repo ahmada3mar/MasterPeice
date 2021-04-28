@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('refrences_1')->nullable();
             $table->string('refrences_2')->nullable();
             $table->string('gender')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('placeholder.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('is_admin')->nullable()->default(0);
             $table->string('password')->default(bcrypt('oca@2021'));

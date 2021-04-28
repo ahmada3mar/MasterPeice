@@ -8,13 +8,21 @@ import Calendar from "v-calendar/lib/components/calendar.umd";
 import DatePicker from "v-calendar/lib/components/date-picker.umd";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
+// import CKEditor  from "@ckeditor/ckeditor5-build-classic"
 
 
-// Register components in your 'main.js'
 Vue.component("v-calendar", Calendar);
 Vue.component("v-date-picker", DatePicker);
 Vue.component("vue-timepicker", VueTimepicker);
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+
+Vue.use( CKEditor );
+// Vue.component("ckeditor", CKEditor.component);
+
+
 Vue.use(Router);
+
+
 
 // main.js
 

@@ -42,7 +42,7 @@
             <div class="col-12 col-lg-5">
             
               <label for="mob" class="mt-2">Mobile No.</label>
-              <input id="mobile" name="mobile" type="tel" pattern="[0]{1}[7]{2}[0-9]{7}" required placeholder="077XXXXXXX" class="form-control" />
+              <input id="mobile" name="mobile" type="tel" maxlength="10" pattern="[0]{1}[7]{2}[0-9]{7}" required placeholder="077XXXXXXX" class="form-control" />
               <label class="mt-2">Role</label>
              <select name="is_admin"  class="form-control">
                     <option value="2">Admin</option>
@@ -119,6 +119,40 @@
       </b-col>
     </b-row>
   </div>
+  <div
+        v-bind:style="{ visibility: show ? 'visible' : 'hidden' }"
+        v-bind:class="{ show: show }"
+        class="modal fade"
+        id="exampleModalLive"
+        tabindex="-1"
+        aria-labelledby="exampleModalLiveLabel"
+        style="display: block"
+        aria-modal="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+              <!-- Boosted mod: using visually hidden text instead of aria-label -->
+              <button type="button" class="close" data-dismiss="modal">
+                <span class="sr-only">Close live modal demo</span>
+              </button>
+            </div>
+            <div class="modal-body">Admin Added successfully</div>
+            <div class="modal-footer">
+     
+              <button
+                @click="show = !show"
+                type="button"
+                class="btn btn-primary"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="show" class="modal-backdrop fade show"></div>
   </div>
 </template>
 
@@ -133,6 +167,7 @@ export default {
       currentPage: 1,
       store:store,
       filter:'',
+      show:false,
       img:"https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png",
        fields: [
          { key: "id", sortable: true },
@@ -167,7 +202,8 @@ export default {
       axios
         .post("http://localhost:8000/addTrainee", data)
         .then((res) =>{this.store.state.users.push(res.data)
-        this.posts.push(res.data)
+        this.posts.push(res.data);
+        this.show=true
         })
         .then((err) => console.log(err));
     },
@@ -188,8 +224,7 @@ export default {
     },
   },
     mounted: function () {
-      this.posts = this.store.state.users.filter(i=> i.is_admin !=0)
-      
+      this.posts = this.store.state.users.filter(i=> i.is_admin ==1 || i.is_admin == 2)
   },
 
 

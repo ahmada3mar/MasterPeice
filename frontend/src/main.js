@@ -10,11 +10,14 @@ import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 
 
-// Register components in your 'main.js'
 Vue.component("v-calendar", Calendar);
 Vue.component("v-date-picker", DatePicker);
 Vue.component("vue-timepicker", VueTimepicker);
+
+
 Vue.use(Router);
+
+
 
 // main.js
 

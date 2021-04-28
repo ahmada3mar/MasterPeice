@@ -22,22 +22,24 @@
         </div>
 
         <label class="mt-2" for="name">Title</label>
-        <input name="title" type="text" class="form-control" />
+        <input v-model="name" name="title" type="text" class="form-control" />
 
         <label class="mt-2" for="name">Description</label>
         <textarea
           name="description"
           style="height: 200px"
           class="form-control"
+          v-model="description"
         ></textarea>
       </div>
       <div class="col-12 my-4 align-items-center d-flex flex-column col-md-3">
-        <img name="image" class="col-12 px-0" v-bind:src="img" />
+        <img  name="image" class="col-12 px-0" v-bind:src="img" />
         <input
           @change="updateimg"
           type="file"
           class="form-control col-12 px-0"
           name="image"
+          
         />
       </div>
 
@@ -123,6 +125,9 @@ export default {
       currentPage: 1,
       filter: "",
       store:store,
+      name:'',
+      description:'',
+
        fields: [
 		"id",
         "image",
@@ -151,7 +156,10 @@ export default {
         .post("http://localhost:8000/addcontent", data)
         .then((res) => {
         
-        store.state.contents.push(res.data)
+        store.state.contents.push(res.data);
+        this.img= "https://media.fdmckosovo.org/2020/07/placeholder.png";
+        this.name ='' ;
+        this.description=''
         })
         .then((err) => console.log(err));
     },

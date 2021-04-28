@@ -13,6 +13,7 @@ import ContactUs from "../pages/public/ContactUs";
 import Content from "../pages/admin/Content";
 import EditAdmin from "../pages/admin/EditAdmin"
 import EditTrainee from "../pages/admin/EditTrainee"
+import Evaluation from "../pages/admin/Evaluations"
 
 export default new Router({
 	mode: "history",
@@ -26,6 +27,7 @@ export default new Router({
 				{ path: "/admin/admins", component: Admins },
 				{ path: "/admin/admins/edit/:id", component: EditAdmin },
 				{ path: "/admin/trainees/edit/:id", component: EditTrainee },
+				{ path: "/admin/trainees/evaluation/:id", component: Evaluation },
 				{ path: "/admin/contents", component: Content },
 				{ path: "/admin/events", component: Events },
 				{ path: "/", component: Dashboard },

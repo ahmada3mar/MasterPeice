@@ -24,6 +24,7 @@
                   <input
                     required
                     id="name"
+                    v-model="name"
                     name="name"
                     type="text"
                     class="form-control"
@@ -32,6 +33,7 @@
                   <input
                     required
                     id="email"
+                    v-model="email"
                     name="email"
                     type="text"
                     class="form-control"
@@ -40,7 +42,9 @@
                   <input
                     required
                     id="mob"
+                    v-model="mobile"
                     name="mobile"
+                    maxlength="10"
                     type="tel"
                     class="form-control"
                   />
@@ -49,6 +53,8 @@
                     required
                     name="orange_mobile"
                     type="tel"
+                    maxlength="10"
+                    v-model="orange_mobile"
                     class="form-control"
                   />
                   <div class="row m-0">
@@ -70,6 +76,7 @@
                       <input
                         required
                         name="field"
+                        v-model="field"
                         type="text"
                         class="form-control"
                       />
@@ -85,6 +92,7 @@
                     name="date_of_birth"
                     type="date"
                     class="form-control"
+                    v-model="date_of_birth"
                   />
                   <label class="mt-2" for="gender">E-Mail</label>
                   <select name="gender" id="gender" class="form-control">
@@ -95,6 +103,7 @@
                   <input
                     required
                     id="Adress"
+                    v-model="address"
                     name="address"
                     type="text"
                     class="form-control"
@@ -102,6 +111,7 @@
                   <label class="mt-2">English Level</label>
                   <input
                     required
+                    v-model="english_level"
                     name="english_level"
                     type="text"
                     class="form-control"
@@ -113,6 +123,7 @@
                         required
                         type="text"
                         name="refrences_1"
+                        v-model="refrences_1"
                         class="form-control"
                       />
                     </div>
@@ -122,6 +133,7 @@
                         required
                         type="text"
                         name="refrences_2"
+                        v-model="refrences_2"
                         class="form-control"
                       />
                     </div>
@@ -193,6 +205,9 @@
             </template>
 
             <template v-slot:cell(actions)="data">
+             <router-link v-bind:to="'trainees/evaluation/' + data.item.id">
+            <b-button variant="danger mx-1" >View</b-button>
+            </router-link>
              <router-link v-bind:to="'trainees/edit/' + data.item.id">
             <b-button variant="danger mx-1" >Edit</b-button>
             </router-link>
@@ -225,6 +240,40 @@
         </b-col>
       </b-row>
     </div>
+     <div
+        v-bind:style="{ visibility: show ? 'visible' : 'hidden' }"
+        v-bind:class="{ show: show }"
+        class="modal fade"
+        id="exampleModalLive"
+        tabindex="-1"
+        aria-labelledby="exampleModalLiveLabel"
+        style="display: block"
+        aria-modal="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+              <!-- Boosted mod: using visually hidden text instead of aria-label -->
+              <button type="button" class="close" data-dismiss="modal">
+                <span class="sr-only">Close live modal demo</span>
+              </button>
+            </div>
+            <div class="modal-body">Tranee Added successfully</div>
+            <div class="modal-footer">
+     
+              <button
+                @click="show = !show"
+                type="button"
+                class="btn btn-primary"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="show" class="modal-backdrop fade show"></div>
   </div>
 </template>
 
@@ -238,6 +287,18 @@ export default {
       currentPage: 1,
       filter: "",
       store:store,
+      name:'',
+      email:'',
+      mobile:'',
+      orange_mobile:'',
+      field:'',
+      address:'',
+      english_level:'',
+      refrences_1:'',
+      refrences_2:'',
+      date_of_birth:'',
+       show: false,
+
       img:
         "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png",
       fields: [
@@ -271,7 +332,18 @@ export default {
       axios
         .post("http://localhost:8000/addTrainee", data)
         .then((res) =>{this.store.state.users.push(res.data)
-        this.posts.push(res.data)
+        this.posts.push(res.data) ;
+          this.name='';
+          this.email='';
+          this.mobile='';
+          this.orange_mobile='';
+          this.field='';
+          this.address='';
+          this.english_level='';
+          this.refrences_1='';
+          this.refrences_2='';
+          this.date_of_birth='';
+          this.show=true
         })
         .then((err) => console.log(err));
     },

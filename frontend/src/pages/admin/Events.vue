@@ -50,6 +50,16 @@
             :per-page="perPage"
             :current-page="currentPage"
           >
+          <template #cell(date)="data">
+              {{ new Date(data.item.date).toDateString()  }}
+            </template>
+          <template #cell(from)="data">
+              {{ data.item.timeFrom.HH + " : "  +  data.item.timeFrom.mm }}
+            </template>
+         
+          <template #cell(to)="data">
+              {{ data.item.timeTo.HH + " : "  +  data.item.timeTo.mm }}
+            </template>
             <template v-slot:cell(actions)="data">
               <b-button variant="warning mx-1" @click="deleteItem(data.item.id)"
                 >View</b-button
@@ -68,171 +78,114 @@
         </b-col>
       </b-row>
     </div>
-    <div v-if="show" v-on:click="show=false" class="overlayer"/>
- <transition name="list">
-
-
-    <div v-if="show" class="my-modal">
-     
-<div class="col">
-
-      <h4>Add Events</h4>
-      <label class="mt-2" for="name">Title</label>
-      <input id="name" name="title" v-model="title" type="text" class="form-control" />
-      <label class="mt-2" for="email">Description</label>
-      <textarea id="description" name="description" v-model="description" class="form-control" ></textarea>
-</div>
-     
-     
-      <div class="row col-12 px-0 mx-0">
-    
-        
-        <div class="col-6">
-         <label class="mt-2 w-100" >From</label>
-        <vue-timepicker  v-model="timeFrom"></vue-timepicker>
+    <div v-if="show" v-on:click="show = false" class="overlayer" />
+    <transition name="list">
+      <div v-if="show" class="my-modal">
+        <div class="col">
+          <h4>Add Events</h4>
+          <label class="mt-2" for="name">Title</label>
+          <input
+            id="name"
+            name="title"
+            v-model="title"
+            type="text"
+            class="form-control"
+          />
+          <label class="mt-2" for="email">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            v-model="description"
+            class="form-control"
+          ></textarea>
         </div>
 
-       <div class="col-6">
-         <label class="mt-2 w-100" >To</label>
-        <vue-timepicker  v-model="timeTo"></vue-timepicker>
-        </div>
+        <div class="row col-12 px-0 mx-0">
+          <div class="col-6">
+            <label class="mt-2 w-100">From</label>
+            <vue-timepicker v-model="timeFrom"></vue-timepicker>
+          </div>
 
+          <div class="col-6">
+            <label class="mt-2 w-100">To</label>
+            <vue-timepicker v-model="timeTo"></vue-timepicker>
+          </div>
+        </div>
+        <div
+          @click="addEvent"
+          class="btn btn-primary col-12 mt-5 d-flex justify-content-center"
+        >
+          Create
+        </div>
       </div>
-      <div @click="addEvent" class="btn btn-primary col-12 mt-5 d-flex justify-content-center">Create</div>
-    </div>
-
-  
- </transition>
+    </transition>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import axios from "axios";
+import {store} from '../../store/store'
 export default {
   data() {
-    const month = new Date().getMonth();
-    const year = new Date().getFullYear();
+  
 
     return {
       show: false,
       timeFrom: {},
       timeTo: {},
-      title:'',
-      eventDate:'',
-      description:'',
-      rows:"",
+      title: "",
+      eventDate: "",
+      description: "",
+      rows: "",
+      dataIncome: {},
 
       masks: {
         weekdays: "WWW",
       },
       attributes: [
-        {
-          key: 1,
-          customData: {
-            title: "Lunch with mom.",
-            class: "bg-red-600 text-white",
-          },
-          dates: "2021-03-20 03:29:01",
-        },
-        {
-          key: 2,
-          customData: {
-            title: "Take Noah to basketball practice",
-            class: "bg-blue-500 text-white",
-          },
-          dates: new Date(year, month, 2),
-        },
-        {
-          key: 3,
-          customData: {
-            title: "Noah's basketball game.",
-            class: "bg-light text-white",
-          },
-          dates: new Date(year, month, 5),
-        },
-        {
-          key: 4,
-          customData: {
-            title: "Take car to the shop",
-            class: "bg-indigo-500 text-white",
-          },
-          dates: new Date(year, month, 5),
-        },
-        {
-          key: 4,
-          customData: {
-            title: "Meeting with new client.",
-            class: "bg-teal-500 text-white",
-          },
-          dates: new Date(year, month, 7),
-        },
-        {
-          key: 5,
-          customData: {
-            title: "Mia's gymnastics practice.",
-            class: "bg-pink-500 text-white",
-          },
-          dates: new Date(year, month, 11),
-        },
-        {
-          key: 6,
-          customData: {
-            title: "Cookout with friends.",
-            class: "bg-orange-500 text-white",
-          },
-          dates: { months: 5, ordinalWeekdays: { 2: 1 } },
-        },
-        {
-          key: 7,
-          customData: {
-            title: "Mia's gymnastics recital.",
-            class: "bg-pink-500 text-white",
-          },
-          dates: new Date(year, month, 22),
-        },
-        {
-          key: 8,
-          customData: {
-            title: "Visit great grandma.",
-            class: "bg-red-600 text-white",
-          },
-          dates: new Date(year, month, 25),
-        },
+        
       ],
-      
+
       perPage: 10,
       currentPage: 1,
       filter: "",
-      fields: ["userId", "id", "title", "actions"],
-      posts: [
-        {
-          id: 1,
-          title: "sunt aut facere repellat provident occaecati",
-        },
-        {
-          id: 2,
-          title: "qui est esse",
-        },
-        {
-          id: 3,
-          title: "ea molestias quasi exercitationem repellat qui",
-        },
-        {
-          id: 3,
-          title: "ea molestias quasi exercitationem repellat qui",
-        },
-      ],
+      fields: ["id", "title","description", "date" , "from" , "to" ,"actions"],
+      posts: [],
+      
     };
   },
   methods: {
     addEvent() {
-      console.log(this.title , this.eventDate , this.description , "dddd"+ this.rows);
-      
-    },
-    showModal(i){
-      this.show = true;
-      this.eventDate=i
+      var data = {
+        title: this.title,
+        description: this.description,
+        date: this.eventDate,
+        timeFrom: this.timeFrom,
+        timeTo: this.timeTo,
+      };
+      axios.post("http://localhost:8000/addevent", data).then(
+        (res) =>
+          {this.dataIncome = {
+            key: res.data.id,
+            customData: {
+              title: this.title,
+              class: "py-2 text-white rounded",
+            },
+            dates: this.eventDate,
+          };
+          this.attributes.push(this.dataIncome);
+          this.show=false ;
+          store.state.events.push(res.data)
+        
+    }
+      );
 
+
+    },
+    showModal(i) {
+      this.show = true;
+      this.eventDate = i;
     },
     moment,
     onChange(time, timeString) {
@@ -242,6 +195,18 @@ export default {
       console.log(this.yourData);
     },
   },
+   mounted:function(){
+    this.attributes = store.state.events.map(i=> ({
+      key: i.id,
+            customData: {
+              title: i.title,
+              class: "py-2 text-white rounded",
+            },
+            dates:  i.date,
+            
+    }));
+    this.posts = store.state.events ;
+  }
 };
 </script>
 
@@ -308,6 +273,7 @@ export default {
   cursor: pointer;
   margin: 4px;
   border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.062);
 }
 
 .vc-day:hover {
@@ -331,15 +297,14 @@ export default {
   border-radius: 10px;
 }
 
-.overlayer{
-  position:absolute;
+.overlayer {
+  position: absolute;
   background: rgba(0, 0, 0, 0.603);
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   z-index: 500;
-
 }
 </style>
 <style scoped>
@@ -350,12 +315,12 @@ export default {
   display: inline-block;
   margin-top: 0;
 }
-.list-enter-active, .list-leave-active {
+.list-enter-active,
+.list-leave-active {
   transition: all 0.5s;
 }
 .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
-  margin-top:100px ;
+  margin-top: 100px;
 }
-
 </style>

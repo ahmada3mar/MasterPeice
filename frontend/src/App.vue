@@ -16,6 +16,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import axios from "axios";
 
+
 export default {
   name: "App",
   data() {
@@ -27,7 +28,11 @@ export default {
   mounted: function () {
     axios
       .post("http://localhost:8000/getcontent")
-      .then((res) => (store.state.contents = res.data))
+      .then((res) => {
+        store.state.contents = res.data.content;
+        store.state.events = res.data.events;
+
+      })
       .catch((err) => console.log(err));
   },
 };

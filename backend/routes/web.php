@@ -26,4 +26,6 @@ Route::post('/getTrainee','HomeController@getTrainees');
 Route::post('/edituser/{id}','HomeController@edituser');
 Route::post('/deleteuser/{id}','HomeController@deleteUser');
 Route::post('/addcontent','HomeController@addContent');
+Route::post('/addevent','HomeController@addevent');
+Route::post('/getEvents','HomeController@getEvents');
 Route::post('/getcontent','ContentController@index');

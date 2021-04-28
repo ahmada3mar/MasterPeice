@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Content;
+use App\Event;
 
 class ContentController extends Controller
 {
     function index(){
 
-       $content = Content::all();
+        $data = [
+            'content' => Content::all(),
+            'events' => Event::all()
+        ];
         
-        return $content ;
+        return $data ;
     }
 }

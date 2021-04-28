@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Content ;
+use App\Event;
 
 class HomeController extends Controller
 {
@@ -101,6 +102,12 @@ class HomeController extends Controller
          }
          return $content ;
      }
+
+     function addevent(Request $request){
+         return Event::create($request->all());
+     }
+   
+
 
 
     

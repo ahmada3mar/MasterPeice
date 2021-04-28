@@ -27,7 +27,11 @@ export default {
   mounted: function () {
     axios
       .post("http://localhost:8000/getcontent")
-      .then((res) => (store.state.contents = res.data))
+      .then((res) => {
+        store.state.contents = res.data.content;
+        store.state.events = res.data.events;
+
+      })
       .catch((err) => console.log(err));
   },
 };

@@ -17,9 +17,20 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('mobile');
+            $table->string('orange_mobile')->nullable();
+            $table->string('education_level')->nullable();
+            $table->string('field')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('address')->nullable();
+            $table->string('english_level')->nullable();
+            $table->string('refrences_1')->nullable();
+            $table->string('refrences_2')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('avatar')->default('placeholder.png');
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('is_admin')->nullable();
-            $table->string('password');
+            $table->integer('is_admin')->nullable()->default(0);
+            $table->string('password')->default(bcrypt('oca@2021'));
             $table->string('api_token', 80)->unique()
             ->nullable()
             ->default(null);

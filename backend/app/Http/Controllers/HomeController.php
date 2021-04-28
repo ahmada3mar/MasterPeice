@@ -56,8 +56,6 @@ class HomeController extends Controller
             $user->avatar = $imagename;
             $user->save();
 
-<<<<<<< HEAD
-=======
         return $user;
     }
   
@@ -73,7 +71,6 @@ class HomeController extends Controller
                 
             }
             $user->save();
->>>>>>> origin/staging
 
         return $user;
     }

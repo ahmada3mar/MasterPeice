@@ -52,19 +52,7 @@ class HomeController extends Controller
             $user = User::create($request->all());
             $user->avatar = $imagename;
             $user->save();
-           
-            
-           
-            // $user->mobile = $request->mobile;
-            // $user->orange_mobile = $request->orange_mobile;
-            // $user->education_level = $request->education_level;
-            // $user->field = $request->field;
-            // $user->date_of_birth = $request->date_of_birth;
-            // $user->address = $request->address;
-            // $user->english_level = $request->mame;
-            // $user->refrences_1 = $request->mame;
-            // $user->refrences_2 = $request->mame;
-            // $user->gender = $request->mame;
+
 
         return $user;
     }

@@ -89,7 +89,7 @@
 								>
 									<img
 										class="col-8 col-lg-auto mt-3 "
-										v-bind:src="'http://localhost:8000/images/1619424200.png'"
+										v-bind:src="img"
 										alt=""
 									/>
 									<div class="custom-file my-3">
@@ -203,7 +203,7 @@ export default {
 			e.preventDefault() ;
 			var data = new FormData(document.getElementById('traineesForm'));
 			axios.post('http://localhost:8000/addTrainee' , data).then(
-				res=>console.log(res)
+				res=>this.posts.push(res.data)
 				
 			).then(err=>console.log(err))
 		},

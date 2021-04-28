@@ -152,6 +152,7 @@ export default {
       filter: "",
       fields: ["id", "title","description", "date" , "from" , "to" ,"actions"],
       posts: [],
+      
     };
   },
   methods: {

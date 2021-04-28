@@ -205,6 +205,9 @@
             </template>
 
             <template v-slot:cell(actions)="data">
+             <router-link v-bind:to="'trainees/evaluation/' + data.item.id">
+            <b-button variant="danger mx-1" >View</b-button>
+            </router-link>
              <router-link v-bind:to="'trainees/edit/' + data.item.id">
             <b-button variant="danger mx-1" >Edit</b-button>
             </router-link>

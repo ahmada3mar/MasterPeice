@@ -169,7 +169,7 @@ export default {
             key: res.data.id,
             customData: {
               title: this.title,
-              class: "bg-red-600 text-white",
+              class: "py-2 text-white rounded",
             },
             dates: this.eventDate,
           };
@@ -199,7 +199,7 @@ export default {
       key: i.id,
             customData: {
               title: i.title,
-              class: "bg-red-600 text-white",
+              class: "py-2 text-white rounded",
             },
             dates:  i.date,
             
@@ -272,6 +272,7 @@ export default {
   cursor: pointer;
   margin: 4px;
   border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.062);
 }
 
 .vc-day:hover {

@@ -182,7 +182,6 @@ export default {
     }
       );
 
-
     },
     showModal(i) {
       this.stateBtn ="Create" ;

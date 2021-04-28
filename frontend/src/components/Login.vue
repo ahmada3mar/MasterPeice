@@ -130,7 +130,7 @@ export default {
         if (res.data.id) {
           store.state.user = res.data;
           store.state.user.is_admin
-            ? this.$router.push("/admin")
+            ? this.fetchUsers()
             : this.$router.push("/trainee");
         }
       })
@@ -146,8 +146,9 @@ export default {
         .then((res) => {
           store.state.user = res.data;
           store.state.user.is_admin
-            ? this.$router.push("/admin")
+            ? this.fetchUsers()
             : this.$router.push("/trainee");
+            
         })
         .catch((err) => {
           this.show = true;
@@ -155,6 +156,14 @@ export default {
           console.log(err);
         });
     },
+      fetchUsers: function () {
+    axios
+      .post("http://localhost:8000/getTrainee")
+      .then((res) => (store.state.users = res.data))
+      .catch((err) => console.log(err))
+      .then(this.$router.push("/admin"))
+      ;
+  },
   },
 };
 </script>

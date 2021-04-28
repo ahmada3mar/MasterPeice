@@ -11,6 +11,8 @@ import Technologies from "../pages/public/Technologies";
 import AboutUs from "../pages/public/AboutUs";
 import ContactUs from "../pages/public/ContactUs";
 import Content from "../pages/admin/Content";
+import EditAdmin from "../pages/admin/EditAdmin"
+import EditTrainee from "../pages/admin/EditTrainee"
 
 export default new Router({
 	mode: "history",
@@ -22,6 +24,8 @@ export default new Router({
 			children: [
 				{ path: "/admin/trainees", component: Trainees },
 				{ path: "/admin/admins", component: Admins },
+				{ path: "/admin/admins/edit/:id", component: EditAdmin },
+				{ path: "/admin/trainees/edit/:id", component: EditTrainee },
 				{ path: "/admin/contents", component: Content },
 				{ path: "/admin/events", component: Events },
 				{ path: "/", component: Dashboard },

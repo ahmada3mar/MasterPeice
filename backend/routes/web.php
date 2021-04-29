@@ -28,4 +28,7 @@ Route::post('/deleteuser/{id}','HomeController@deleteUser');
 Route::post('/addcontent','HomeController@addContent');
 Route::post('/addevent','HomeController@addevent');
 Route::post('/getEvents','HomeController@getEvents');
+Route::post('/addevaluation','HomeController@addevaluation');
 Route::post('/getcontent','ContentController@index');
+Route::get('/show','HomeController@show');
+Route::post('/getevaluation/{id}','HomeController@getevaluation');

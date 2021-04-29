@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from "vue/dist/vue";
 import App from "./App";
 import router from "./router";
 import Router from "vue-router";
@@ -17,16 +17,9 @@ Vue.component("vue-timepicker", VueTimepicker);
 import CKEditor from '@ckeditor/ckeditor5-vue2';
 
 Vue.use( CKEditor );
-// Vue.component("ckeditor", CKEditor.component);
-
 
 Vue.use(Router);
 
-
-
-// main.js
-
-// Register components in your 'main.js'
 
 Vue.use(TablePlugin);
 Vue.use(BootstrapVue);

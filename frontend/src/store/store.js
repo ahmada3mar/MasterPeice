@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
         loading:true,
         users:[],
         contents:[],
-        events:[]
+        events:[],
+        evaluation : ''
     },
     mutations: {
         [UPDATE_USERS](state, users) {

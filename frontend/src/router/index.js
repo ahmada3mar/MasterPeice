@@ -14,9 +14,13 @@ import Content from "../pages/admin/Content";
 import EditAdmin from "../pages/admin/EditAdmin"
 import EditTrainee from "../pages/admin/EditTrainee"
 import Evaluation from "../pages/admin/Evaluations"
+import ViewEvaluation from "../pages/admin/ViewEvaluation"
 
 export default new Router({
 	mode: "history",
+		scrollBehavior () {
+			return { x: 0, y: 0 }
+		},
 	routes: [
 		{
 			path: "/admin*",
@@ -30,6 +34,7 @@ export default new Router({
 				{ path: "/admin/trainees/evaluation/:id", component: Evaluation },
 				{ path: "/admin/contents", component: Content },
 				{ path: "/admin/events", component: Events },
+				{ path: "/admin/ViewEvaluation", component: ViewEvaluation },
 				{ path: "/", component: Dashboard },
 			],
 		},

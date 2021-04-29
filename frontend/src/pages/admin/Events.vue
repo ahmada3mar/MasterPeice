@@ -194,6 +194,7 @@ export default {
     },
     
     showModalEdit(i){
+      window.scrollTo({top:0 , behavior: 'smooth'});
       this.showModal(i)
       this.stateBtn ="Update" ;
       this.timeFrom= i.timeFrom

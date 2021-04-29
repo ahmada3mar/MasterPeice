@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Content ;
 use App\Event;
+use App\Evaluation;
 
 class HomeController extends Controller
 {
@@ -106,7 +107,15 @@ class HomeController extends Controller
      function addevent(Request $request){
          return Event::create($request->all());
      }
+
+     function addevaluation(Request $request ){
+        return Evaluation::create($request->all()) ;
+     }
+     function getevaluation($id){
+        return Evaluation::where('user_id' , $id)->get() ;
+     }
    
+    
 
 
 

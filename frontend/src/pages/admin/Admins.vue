@@ -104,9 +104,9 @@
               {{data.item.is_admin == '1' ? 'Job Coach' : 'Admin'}}
             </template>
          <template v-slot:cell(actions)="data">
-            <router-link v-bind:to="'admins/edit/' + data.item.id">
+          
             <b-button variant="danger mx-1" >Edit</b-button>
-            </router-link>
+          
             <b-button variant="danger mx-1" @click="deleteItem(data.item.id)">Delete</b-button>
           </template>
         </b-table>

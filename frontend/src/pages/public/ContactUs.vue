@@ -31,6 +31,7 @@
 					<input type="number" class="form-control" id="number" />
 					<label id="labelnumber" htmlFor="number">Mobile</label>
 				</div>
+
 				<div class="d-flex flex-column-reverse mb-3">
 					<select class="form-control" id="exampleSelect1">
 						<option>Amman</option>
@@ -39,17 +40,24 @@
 					<label id="labeloption" htmlFor="number">Governorate</label>
 				</div>
 				<div class="btn btn-primary col-12 justify-content-center mb-3">
-					Login
+					Submit
 				</div>
 			</div>
 			<div class="col-5 d-flex flex-column">
-				<div class="d-flex flex-column-reverse mb-3 ">
-					<input type="text" class="form-control" id="name" />
-					<label id="labelname" htmlFor="name">Full Name</label>
+				<div class="d-flex flex-column-reverse mb-3">
+					<select class="form-control" id="exampleSelect1">
+						<option>Soft Skills</option>
+						<option>Digital Skills</option>
+						<option>Innovation</option>
+						<option>Entrepreneurship</option>
+						<option>Sales Skills</option>
+						<option>Coding</option>
+					</select>
+					<label id="labeloption" htmlFor="number">Subject</label>
 				</div>
 				<div class="d-flex flex-column-reverse mb-3 flex-grow-1">
 					<textarea class="form-control flex-grow-1" id="email"></textarea>
-					<label id="labelEmail" htmlFor="email">Email</label>
+					<label id="labelEmail" htmlFor="email">Message</label>
 				</div>
 			</div>
 		</div>
@@ -97,28 +105,16 @@ export default {
 	color: rgb(255, 255, 255);
 }
 
-#email:focus {
-	border: orange 2px solid;
-}
-#email:focus ~ #labelEmail {
-	color: orange;
-}
-
-#name:focus {
-	border: orange 2px solid;
-}
-#name:focus ~ #labelname {
-	color: orange;
-}
-#number:focus {
-	border: orange 2px solid;
-}
-#number:focus ~ #labelnumber {
-	color: orange;
-}
+#email:focus,
+#name:focus,
+#number:focus,
 select:focus {
 	border: orange 2px solid;
+	box-shadow: 0 0 0 0;
 }
+#email:focus ~ #labelEmail,
+#name:focus ~ #labelname,
+#number:focus ~ #labelnumber,
 select:focus ~ #labeloption {
 	color: orange;
 }

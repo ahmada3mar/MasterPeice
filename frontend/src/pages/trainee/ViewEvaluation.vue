@@ -45,31 +45,18 @@
         Note : <label class="text-primary">{{ temp.note || "N/A" }}</label>
       </div>
 
-      <div
-        v-if="temp.is_published"
-        class="alert alert-success col-12 mt-2"
-        role="alert"
-      >
-        <span class="alert-icon"><span class="sr-only">Success</span></span>
-        <p>Published</p>
-      </div>
     </div>
     <div
       class="border result border-warning p-2 m-2 ck"
       v-html="temp.evaluation || 'N/A'"
     />
     <div
-      @click="$router.push('/admin/trainees/')"
+      @click="$router.push('/trainee/profile')"
       class="btn btn-primary my-4 mx-2 col-2 p-2 justify-content-center d-flex float-right"
     >
       Back
     </div>
-       <div v-if="!temp.is_published"
-      @click="$router.push('/admin/ViewEvaluation/edit')"
-      class="btn btn-secondary  my-4 mx-2 col-2 p-2 justify-content-center d-flex float-right"
-    >
-      Edit
-    </div>
+
   </div>
 </template>
 
@@ -83,9 +70,7 @@ export default {
       temp: store.state.evaluation,
     };
   },
-  mounted: function () {
-    console.log(store.state.evaluation);
-  },
+
  
 };
 </script>

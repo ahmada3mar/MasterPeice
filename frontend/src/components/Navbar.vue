@@ -23,36 +23,47 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<!-- Boosted mod: active class on link -->
-					<router-link class="nav-link active" to="/" aria-current="page">
+					<router-link class="nav-link " v-bind:class="this.$route.path=='/' && 'active' " to="/" aria-current="page">
 						Home <span class="sr-only">(current)</span>
 					</router-link>
 				</li>
 				<li class="nav-item">
-					<router-link class="nav-link" to="/Technologies">
+					<router-link class="nav-link"  v-bind:class="this.$route.path=='/Technologies' && 'active' " to="/Technologies">
 						Technologies
 					</router-link>
 				</li>
 				<li class="nav-item">
-					<router-link class="nav-link" to="/AboutUs">
+					<router-link class="nav-link"  v-bind:class="this.$route.path=='/AboutUs' && 'active' " to="/AboutUs">
 						About Us
 					</router-link>
 				</li>
 				<li class="nav-item">
-					<router-link class="nav-link" to="/ContactUs">
+					<router-link v-bind:class="this.$route.path=='/ContactUs' && 'active' " class="nav-link" to="/ContactUs">
 						Contact Us
+					</router-link>
+				</li>
+				<li v-if="store.state.user.is_admin == 0 " class="nav-item">
+					<router-link v-bind:class="this.$route.path=='/trainee/profile' && 'active' " class="nav-link" to="/trainee/profile">
+						Profile
 					</router-link>
 				</li>
 			</ul>
 			<form class="form-inline">
-				<router-link class="btn btn-secondary btn-inverse" to="/login">
-					Sign In
+				<router-link class="btn btn-secondary btn-inverse mx-1" to="/login">
+				{{store.state.user.id ? 'Portal' : 'Sign In'}}
+					
 				</router-link>
+				<div @click="logout" v-if="store.state.user.id " class="btn btn-secondary btn-inverse mx-1" >
+				Logout
+					
+				</div>
 			</form>
 		</div>
 	</nav>
 </template>
 
 <script>
+import axios from 'axios';
 import { store } from "../store/store";
 
 export default {
@@ -62,5 +73,14 @@ export default {
 			store: store,
 		};
 	},
+	methods:{
+		logout(){
+			axios.post('http://localhost:8000/logout')
+			.then(()=>{
+				store.state.user = {} ;
+				this.$router.push('/')
+			})
+		}
+	}
 };
 </script>

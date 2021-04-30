@@ -1,13 +1,15 @@
 <?php
    
 namespace App\Http\Controllers;
-  
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Content ;
 use App\Event;
 use App\Evaluation;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -109,10 +111,62 @@ class HomeController extends Controller
      }
 
      function addevaluation(Request $request ){
+        $user =  User::find($request['user_id']);
+ 
+        if($request['is_published'] == 1){
+            
+            $data = $request->all();
+            $data['user'] = $user;
+            Mail::send('emails.evaluation', $data, function($message) use ($user) {
+            $message->to($user->email, $user->name)
+            ->subject('Evaluation Result');
+            $message->from('vpna3mar@gmail.com','Orange Coding Academy');
+            });
+       }
         return Evaluation::create($request->all()) ;
      }
      function getevaluation($id){
+         
         return Evaluation::where('user_id' , $id)->get() ;
+     }
+     function editevaluation(Request $request ,$id){
+      
+        //  return view('emails.evaluation');
+
+         $user =  Evaluation::find($id)->user ;
+        if($request['is_published'] == 1){
+            
+             $data = $request->all();
+             $data['user'] = $user;
+             Mail::send('emails.evaluation', $data, function($message) use ($user) {
+             $message->to($user->email, $user->name)
+             ->subject('Evaluation Result');
+             $message->from('vpna3mar@gmail.com','Orange Coding Academy');
+             });
+        }
+
+        return Evaluation::find($id)->update($request->all()) ;
+     }
+
+
+     function changePassword(Request $request){
+         $user= User::find($request->id) ;
+
+        if (!Hash::check($request->old,  $user->password)) { 
+            return ['old'=>['Password Incorrect']] ;
+        }
+
+        $validator = Validator::make($request->all(), [
+            'old' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return $validator->errors();
+        }
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return $user->save();
      }
    
     

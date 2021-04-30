@@ -8,7 +8,7 @@ class Evaluation extends Model
 {
     protected $fillable = [
         'agility', 'team_work', 'leadership_skill','time_management' ,'presentation_skills' ,
-        'oral_expression', 'quality_of_the_answers' , 'business_ethics' ,'evaluation' , 'user_id' , 'note'
+        'oral_expression', 'quality_of_the_answers' , 'business_ethics' ,'evaluation' , 'user_id' , 'note' , 'is_published'
     ];
 
 

@@ -2,35 +2,35 @@
      <ul class="nav-item">
     <li class="m-0 mt-1">
         <router-link class="link " to="/admin">
-      <div v-bind:class="this.$route.path=='/admin' ? 'active' : null" class="itemtabe">
+      <div v-bind:class="this.$route.path=='/admin' && 'active' " class="itemtabe">
         Dashboard
       </div>
         </router-link>
     </li>
     <li class="m-0 mt-1">
         <router-link class="link " to="/admin/trainees">
-      <div v-bind:class="this.$route.path=='/admin/trainees' ? 'active' : null" class="itemtabe">
+      <div v-bind:class="this.$route.path.startsWith('/admin/trainees') && 'active' " class="itemtabe">
         Manege Trainees
       </div>
         </router-link>
     </li>
     <li class="m-0 mt-1">
         <router-link class="link " to="/admin/admins">
-      <div v-bind:class="this.$route.path=='/admin/admins' ? 'active' : null" class="itemtabe">
+      <div v-bind:class="this.$route.path.startsWith('/admin/admins') && 'active' " class="itemtabe">
         Manege Admins
       </div>
         </router-link>
     </li>
     <li class="m-0 mt-1">
         <router-link class="link " to="/admin/contents">
-      <div v-bind:class="this.$route.path=='/admin/contents' ? 'active' : null" class="itemtabe">
+      <div v-bind:class="this.$route.path.startsWith('/admin/contents') && 'active' " class="itemtabe">
         Manege Content
       </div>
         </router-link>
     </li>
     <li class="m-0 mt-1">
         <router-link class="link " to="/admin/events">
-      <div v-bind:class="this.$route.path=='/admin/events' ? 'active' : null" class="itemtabe">
+      <div v-bind:class="this.$route.path.startsWith('/admin/events') && 'active' " class="itemtabe">
         Manege Events
       </div>
         </router-link>

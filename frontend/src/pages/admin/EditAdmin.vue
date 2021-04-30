@@ -3,8 +3,9 @@
               @submit="submit"
               id="traineesForm"
               enctype="multipart/form-data"
+              class="bg-white py-4 my-4"
             >
-          <div class="row m-0 justify-content-between">
+          <div class="row m-0 justify-content-between mb-4">
         
             <div class="col-12 col-lg-5">
               <label class="mt-2" for="name">Full Name</label>

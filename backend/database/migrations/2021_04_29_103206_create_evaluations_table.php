@@ -24,8 +24,9 @@ class CreateEvaluationsTable extends Migration
             $table->string('oral_expression')->nullable();
             $table->string('quality_of_the_answers')->nullable();
             $table->string('business_ethics')->nullable();
-            $table->string('evaluation')->nullable();
+            $table->text('evaluation')->nullable();
             $table->string('note')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

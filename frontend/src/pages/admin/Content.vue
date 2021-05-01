@@ -52,7 +52,7 @@
       </div>
     </form>
    
-    <div class="p-3 bg-white col-12 ">
+    <div class="p-3 bg-white col-12 overflow-auto mb-4">
      <b-row class="mb-3">
         <b-col md="3">
           <b-form-input

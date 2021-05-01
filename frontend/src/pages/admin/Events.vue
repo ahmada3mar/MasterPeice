@@ -28,8 +28,8 @@
         </div>
       </template>
     </v-calendar>
-    <div class="p-2 bg-white my-4">
-      <b-row class="mb-3">
+    <div class="p-2 bg-white my-4 overflow-auto" >
+      <b-row class="mb-3 overflow-auto">
         <b-col md="3">
           <b-form-input
             v-model="filter"
@@ -50,15 +50,15 @@
             :per-page="perPage"
             :current-page="currentPage"
           >
-          <template #cell(date)="data">
-              {{ new Date(data.item.date).toDateString()  }}
+            <template #cell(date)="data">
+              {{ new Date(data.item.date).toDateString() }}
             </template>
-          <template #cell(from)="data">
-              {{ data.item.timeFrom.HH + " : "  +  data.item.timeFrom.mm }}
+            <template #cell(from)="data">
+              {{ data.item.timeFrom.HH + " : " + data.item.timeFrom.mm }}
             </template>
-         
-          <template #cell(to)="data">
-              {{ data.item.timeTo.HH + " : "  +  data.item.timeTo.mm }}
+
+            <template #cell(to)="data">
+              {{ data.item.timeTo.HH + " : " + data.item.timeTo.mm }}
             </template>
             <template v-slot:cell(actions)="data">
               <b-button variant="warning mx-1" @click="showModalEdit(data.item)"
@@ -115,7 +115,7 @@
           @click="addEvent"
           class="btn btn-primary col-12 mt-5 d-flex justify-content-center"
         >
-          {{stateBtn}}
+          {{ stateBtn }}
         </div>
       </div>
     </transition>
@@ -125,11 +125,9 @@
 <script>
 import moment from "moment";
 import axios from "axios";
-import {store} from '../../store/store'
+import { store } from "../../store/store";
 export default {
   data() {
-  
-
     return {
       show: false,
       timeFrom: {},
@@ -139,21 +137,18 @@ export default {
       description: "",
       rows: "",
       dataIncome: {},
-      stateBtn : 'Create',
+      stateBtn: "Create",
 
       masks: {
         weekdays: "WWW",
       },
-      attributes: [
-        
-      ],
+      attributes: [],
 
       perPage: 10,
       currentPage: 1,
       filter: "",
-      fields: ["id", "title","description", "date" , "from" , "to" ,"actions"],
+      fields: ["id", "title", "description", "date", "from", "to", "actions"],
       posts: [],
-      
     };
   },
   methods: {
@@ -165,43 +160,38 @@ export default {
         timeFrom: this.timeFrom,
         timeTo: this.timeTo,
       };
-      axios.post("http://localhost:8000/addevent", data).then(
-        (res) =>
-          {this.dataIncome = {
-            key: res.data.id,
-            customData: {
-              title: this.title,
-              class: "py-2 text-white rounded",
-            },
-            dates: this.eventDate,
-          };
-          this.attributes.push(this.dataIncome);
-          this.show=false ;
-          store.state.events.push(res.data)
-        
-    }
-      );
-
-
+      axios.post("http://localhost:8000/addevent", data).then((res) => {
+        this.dataIncome = {
+          key: res.data.id,
+          customData: {
+            title: this.title,
+            class: "py-2 text-white rounded",
+          },
+          dates: this.eventDate,
+        };
+        this.attributes.push(this.dataIncome);
+        this.show = false;
+        store.state.events.push(res.data);
+      });
     },
     showModal(i) {
-      this.stateBtn ="Create" ;
-      this.timeFrom= {}
-      this.timeTo= {}
-      this.title= ""
-      this.description= ""
+      this.stateBtn = "Create";
+      this.timeFrom = {};
+      this.timeTo = {};
+      this.title = "";
+      this.description = "";
       this.show = true;
       this.eventDate = i;
     },
-    
-    showModalEdit(i){
-      window.scrollTo({top:0 , behavior: 'smooth'});
-      this.showModal(i)
-      this.stateBtn ="Update" ;
-      this.timeFrom= i.timeFrom
-      this.timeTo= i.timeTo
-      this.title= i.title
-      this.description= i.description
+
+    showModalEdit(i) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      this.showModal(i);
+      this.stateBtn = "Update";
+      this.timeFrom = i.timeFrom;
+      this.timeTo = i.timeTo;
+      this.title = i.title;
+      this.description = i.description;
     },
     moment,
     onChange(time, timeString) {
@@ -211,18 +201,17 @@ export default {
       console.log(this.yourData);
     },
   },
-   mounted:function(){
-    this.attributes = store.state.events.map(i=> ({
+  mounted: function () {
+    this.attributes = store.state.events.map((i) => ({
       key: i.id,
-            customData: {
-              title: i.title,
-              class: "py-2 text-white rounded",
-            },
-            dates: new Date(i.date),
-            
+      customData: {
+        title: i.title,
+        class: "py-2 text-white rounded",
+      },
+      dates: new Date(i.date),
     }));
-    this.posts = store.state.events ;
-  }
+    this.posts = store.state.events;
+  },
 };
 </script>
 

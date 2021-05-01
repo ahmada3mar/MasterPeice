@@ -1,14 +1,12 @@
 <template>
 	<div class="background">
-		<div class="row m-0 p-md-5 p-0 justify-content-between mb-5 ">
+		<div  class="row m-0 p-2 justify-content-around align-items-center my-md-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
 					<h1 class="title font-weight-bold ">About Us</h1>
 					<h3 class="description mt-2">
-						The demand for programmers is increasing in local, regional, and
-						global labor markets, but there is a shortage of qualified
-						candidates. So, we took on our shoulders the mission of qualifying a
-						new generation of programmers.
+						know about our mission, what does the academy offer, the eligibilty
+						criteria and all about our tarining courses and how to enroll.
 					</h3>
 				</div>
 			</div>
@@ -17,16 +15,55 @@
 			</div>
 		</div>
 
-		<div class="row m-0 p-md-5 mt-5 p-0 justify-content-between mb-5">
+		<div style="display:grid; margin-top:12rem !important" class="row m-0 my-5 p-md-5 mt-5 p-2 justify-content-between  py-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
-					<h2 class="title font-weight-bold ">Our Mission</h2>
-					<h3 class="descriptionAbout mt-2">
-						The demand for programmers is increasing in local, regional, and
-						global labor markets, but there is a shortage of qualified
-						candidates. So, we took on our shoulders the mission of qualifying a
-						new generation of programmers.
-					</h3>
+					<h2 class="title font-weight-bold ">What’s in it for you?</h2>
+					<ul class="o-square-list">
+						<li>
+							Develop your communication skills and get a new fresh start and
+							endless opportunities.
+						</li>
+						<li>
+							Develop your technical skills in mobile and web development and
+							create new projects.
+						</li>
+						<li>
+							Develop your personal skills and boost your self confidence.
+						</li>
+						<li>
+							Improve your knowledge about programming and learn about the
+							latest technologies.
+						</li>
+						<li>
+							Start your professional life and draw a plan for your future.
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
+				<div class="py-4">
+					<h2 class="title font-weight-bold ">What does the academy offer?</h2>
+					<ol>
+						<li>
+							Free 6-month training.
+						</li>
+						<li>
+							Intensive courses offered by a team of qualified trainers in an
+							interactive learning experience, such as HTML, CSS, JavaScript
+							(React,) PHP (Laravel), Python (Flask).
+						</li>
+						<li>
+							Networking opportunities with the largest companies in the local
+							and international markets.
+						</li>
+						<li>
+							Training courses in life and administrative skills.
+						</li>
+						<li>
+							Start your professional life and draw a plan for your future.
+						</li>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -75,5 +112,8 @@ export default {
 }
 .descriptionAbout {
 	font-weight: 300;
+}
+li{
+	display: list-item;
 }
 </style>

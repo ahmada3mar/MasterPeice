@@ -1,15 +1,10 @@
 <template>
 	<div class="card col-4 m-4 ">
-		<img
-			src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png"
-			class="card-img-top "
-			alt="technology logo"
-		/>
+		<img :src="img" class="card-img-top " alt="technology logo" />
 		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
+			<h4 class="card-title">{{ title }}</h4>
 			<p class="card-text">
-				This is a longer card with supporting text below as a natural lead-in to
-				additional content. This content is a little bit longer.
+				{{ description }}
 			</p>
 		</div>
 	</div>
@@ -18,9 +13,7 @@
 <script>
 export default {
 	name: "Cards",
-	data() {
-		return {};
-	},
+	props: ["img", "title", "description"],
 };
 </script>
 

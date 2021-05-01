@@ -76,7 +76,7 @@
       </b-collapse>
     </b-card>
   </div>
-  <div class="p-2 bg-white">
+  <div class="p-2 bg-white overflow-auto mb-4">
 
   <b-row class="mb-3">
       <b-col md="3">
@@ -105,7 +105,7 @@
             </template>
          <template v-slot:cell(actions)="data">
           
-            <b-button variant="danger mx-1" >Edit</b-button>
+            <b-button @click="$router.push('/admin/admins/edit/'+data.item.id)" variant="danger mx-1" >Edit</b-button>
           
             <b-button variant="danger mx-1" @click="deleteItem(data.item.id)">Delete</b-button>
           </template>

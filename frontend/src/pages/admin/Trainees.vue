@@ -177,7 +177,7 @@
 				</b-collapse>
 			</b-card>
 		</div>
-		<div class="p-2 bg-white">
+		<div class="p-2 bg-white overflow-auto">
 			<b-row class="mb-3">
 				<b-col md="3">
 					<b-form-input
@@ -198,7 +198,7 @@
 						:fields="fields"
 						:per-page="perPage"
 						:current-page="currentPage"
-						v-if="posts.length > 0"
+						
 					>
 						<template #cell(image)="data">
 							<img
@@ -208,9 +208,9 @@
 						</template>
 
 						<template v-slot:cell(actions)="data">
-							<router-link v-bind:to="'trainees/evaluation/' + data.item.id">
-								<b-button variant="danger mx-1">View</b-button>
-							</router-link>
+							
+								<b-button @click="$router.push('trainees/evaluation/' + data.item.id)" variant="danger mx-1">View</b-button>
+				
 							<router-link v-bind:to="'trainees/edit/' + data.item.id">
 								<b-button variant="danger mx-1">Edit</b-button>
 							</router-link>
@@ -219,20 +219,7 @@
 							>
 						</template>
 					</b-table>
-					<div
-						v-else
-						class="d-flex h-100 align-items-center justify-content-center"
-					>
-						<div class="spinner-grow text-primary" role="status">
-							<span class="sr-only">Loading...</span>
-						</div>
-						<div class="spinner-grow text-secondary" role="status">
-							<span class="sr-only">Loading...</span>
-						</div>
-						<div class="spinner-grow bg-white" role="status">
-							<span class="sr-only">Loading...</span>
-						</div>
-					</div>
+					
 					<b-pagination
 						v-model="currentPage"
 						:total-rows="rows"

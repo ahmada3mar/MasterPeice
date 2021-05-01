@@ -3,12 +3,13 @@
 		<div class="row m-0 p-md-5 p-0 justify-content-between mb-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
-					<h1 class="title font-weight-bold ">Conatct Us</h1>
+					<h1 class="title font-weight-bold ">
+						Contact Us
+					</h1>
 					<h3 class="description mt-2">
-						The demand for programmers is increasing in local, regional, and
-						global labor markets, but there is a shortage of qualified
-						candidates. So, we took on our shoulders the mission of qualifying a
-						new generation of programmers.
+						Stay in touch and updated, feel free to ask if you have any further
+						questions and we will make sure to cover your questions and
+						concerns.
 					</h3>
 				</div>
 			</div>
@@ -97,7 +98,7 @@ export default {
 
 .title {
 	font-weight: 800;
-	color: rgb(255, 118, 0);
+	color: #ff7900;
 }
 .description {
 	font-weight: 300;
@@ -109,13 +110,13 @@ export default {
 #name:focus,
 #number:focus,
 select:focus {
-	border: orange 2px solid;
+	border: #ff7900 2px solid;
 	box-shadow: 0 0 0 0;
 }
 #email:focus ~ #labelEmail,
 #name:focus ~ #labelname,
 #number:focus ~ #labelnumber,
 select:focus ~ #labeloption {
-	color: orange;
+	color: #ff7900;
 }
 </style>

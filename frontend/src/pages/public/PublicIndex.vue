@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="background">
 		<main role="main">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -145,10 +145,10 @@
 			</div>
 			<div claSS="bg-light pt-5 pb-3">
 				<div claSS="container">
-					<div claSS="container">
+					<div claSS="row justify-content-center">
 						<div>
 							<div claSS="row  ">
-								<div claSS="col-4">
+								<div claSS="col-md-4 col-12 d-inline-flex justify-content-stretch my-md-0 my-2">
 									<div claSS="card border">
 										<img
 											src="../../assets/technologies.png"
@@ -175,13 +175,13 @@
 										</div>
 									</div>
 								</div>
-								<div claSS="col-4">
+								<div claSS="col-md-4 col-12 d-inline-flex justify-content-stretch my-md-0 my-2">
 									<div claSS="card border">
 										<img
-											src="images/discovery.svg"
+											src="../../assets/aboutUs_card.png"
 											alt=""
 											claSS="card-img-top bg-yellow"
-											width="416"
+											
 											height="229"
 											loading="lazy"
 										/>
@@ -202,13 +202,13 @@
 										</div>
 									</div>
 								</div>
-								<div claSS="col-4">
+								<div claSS="col-md-4 col-12 d-inline-flex justify-content-stretch my-md-0 my-2">
 									<div claSS="card border">
 										<img
-											src="images/discovery.svg"
+											src="../../assets/contactus_card.png"
 											alt=""
 											claSS="card-img-top bg-yellow"
-											width="416"
+											
 											height="229"
 											loading="lazy"
 										/>
@@ -234,28 +234,28 @@
 					</div>
 				</div>
 			</div>
-			<div claSS="popular-services p-5">
+			<div claSS="popular-services p-2 ">
 				<div claSS="container">
 					<div claSS="d-flex mb-3">
 						<h2 claSS="mb-0">Announcements</h2>
 					</div>
-					<div claSS="row">
+					<div claSS="row my-4">
 						<div claSS="col-12">
 							<div claSS="row">
 								<img
 									claSS="col-12 col-lg-4"
 									src="../../assets/graduation.jpg"
 									alt=""
-									width="416"
-									height="322"
+									
+									
 									loading="lazy"
 								/>
 								<div
 									claSS="col justify-content-between d-inline-flex flex-column"
 								>
 									<div>
-										<h2 claSS="card-title">Second Cohort Graduation</h2>
-										<p claSS="card-text" lang="zxx">
+										<h2 claSS="card-title text-primary">Second Cohort Graduation</h2>
+										<h4 claSS="card-text  font-weight-normal"  lang="zxx">
 											The Coding Academy is preparing the graduation ceremony,
 											for fifty-four trainees who spent seven months training in
 											the Coding Academy, which will occur online through Zoom
@@ -264,30 +264,26 @@
 											masterpiece) and discussed it during Ramadan in front of a
 											jury that contained Orange technical experts and Simlopn
 											members.
-										</p>
+										</h4>
+									</div>
+									<div>
+
+										<div class="btn btn-primary float-left my-3 float-md-right">See More </div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div claSS="d-flex mb-3"></div>
-					<div claSS="row">
+					<div claSS="d-flex my-4"></div>
+					<div claSS="row my-4">
 						<div claSS="col-12">
 							<div claSS="row">
-								<img
-									claSS="col-12 col-lg-4"
-									src="../../assets/thirdCohort.jpg"
-									alt=""
-									width="416"
-									height="322"
-									loading="lazy"
-								/>
 								<div
 									claSS="col justify-content-between d-inline-flex flex-column"
 								>
 									<div>
-										<h2 claSS="card-title">Third Batch Lanchuing</h2>
-										<p claSS="card-text" lang="zxx">
+										<h2 claSS="card-title  text-primary">Third Batch Lanchuing</h2>
+										<h4 claSS="card-text font-weight-normal" lang="zxx">
 											Orange Jordan intends soon to launch the third cohort
 											within Orange Coding Academy, for those wishing to join
 											the third batch of its programming academy starting soon,
@@ -295,15 +291,35 @@
 											then consider them to select the most qualified candidates
 											for the final stage, and the actual training and interview
 											dates will be determined later.
-										</p>
+										</h4>
+									</div>
+									<div>
+
+										<div class="btn btn-primary  my-3">See More </div>
 									</div>
 								</div>
+								<img
+									claSS="col-12 col-lg-4"
+									src="../../assets/thirdCohort.jpg"
+									alt=""
+									width="416"
+									
+									loading="lazy"
+								/>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</main>
+		<div class="after px-5">
+		<h1>
+			Our Location
+			</h1>	
+		</div>
+		<div class="row m-0">
+			<img class="col-12 p-0" src="../../assets/location.png" alt="">
+		</div>
 	</div>
 </template>
 
@@ -349,6 +365,25 @@ export default {
 	font-weight: 300;
 	line-height: 1;
 	letter-spacing: -0.05rem;
+}
+.background {
+	background: url("../../assets/background.svg") no-repeat;
+	background-size: cover;
+}
+.after{
+	position: relative;
+}
+.after::after{
+	content: "";
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #fff;
+    display: block;
+    position: absolute;
+    left: 124px;
+	z-index: 10;
 }
 /* RESPONSIVE CSS
 -------------------------------------------------- */

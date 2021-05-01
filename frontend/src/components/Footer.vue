@@ -6,7 +6,7 @@
 	>
 		<h2 class="sr-only">Site map &amp; informations</h2>
 		<div class="o-footer-top">
-			<div class="container-md">
+			<div class="container-md m-0">
 				<ul class="nav align-items-center">
 					<li class="nav-item mb-3 mb-md-0 pl-md-0 col-12 col-md-auto">
 						Follow us

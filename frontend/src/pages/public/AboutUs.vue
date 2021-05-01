@@ -1,6 +1,6 @@
 <template>
 	<div class="background">
-		<div class="row m-0 p-md-5 p-0 justify-content-between mb-5 ">
+		<div  class="row m-0 p-2 justify-content-around align-items-center my-md-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
 					<h1 class="title font-weight-bold ">About Us</h1>
@@ -15,7 +15,7 @@
 			</div>
 		</div>
 
-		<div class="row m-0 p-md-5 mt-5 p-0 justify-content-between mb-5">
+		<div style="display:grid; margin-top:12rem !important" class="row m-0 my-5 p-md-5 mt-5 p-2 justify-content-between  py-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
 					<h2 class="title font-weight-bold ">What’s in it for you?</h2>
@@ -112,5 +112,8 @@ export default {
 }
 .descriptionAbout {
 	font-weight: 300;
+}
+li{
+	display: list-item;
 }
 </style>

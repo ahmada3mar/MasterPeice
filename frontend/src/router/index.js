@@ -10,6 +10,7 @@ import Technologies from "../pages/public/Technologies";
 import AboutUs from "../pages/public/AboutUs";
 import ContactUs from "../pages/public/ContactUs";
 import Content from "../pages/admin/Content";
+<<<<<<< HEAD
 import EditAdmin from "../pages/admin/EditAdmin"
 import EditTrainee from "../pages/admin/EditTrainee"
 import Evaluation from "../pages/admin/Evaluations"
@@ -18,12 +19,18 @@ import profileEvaluation from "../pages/trainee/ViewEvaluation"
 import EditEvaluation from "../pages/admin/EditEvaluation"
 import TraineeHome from "../pages/trainee/home"
 import TraineeProfile from "../pages/trainee/Profile"
+=======
+import EditAdmin from "../pages/admin/EditAdmin";
+import EditTrainee from "../pages/admin/EditTrainee";
+import Evaluation from "../pages/admin/Evaluations";
+import ViewEvaluation from "../pages/admin/ViewEvaluation";
+>>>>>>> 5625bf3a79c947ba41a729d394037af42a996f61
 
 export default new Router({
 	mode: "history",
-		scrollBehavior () {
-			return { x: 0, y: 0 }
-		},
+	scrollBehavior() {
+		return { x: 0, y: 0 };
+	},
 	routes: [
 		{
 			path: "/admin*",

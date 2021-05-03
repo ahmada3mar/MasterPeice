@@ -1,7 +1,7 @@
 <template>
      <ul class="nav-item">
     <li class="m-0 mt-1">
-        <router-link class="link " to="/admin">
+        <router-link class="link " to="/chat/3">
       <div v-bind:class="this.$route.path=='/admin' && 'active' " class="itemtabe">
         Dashboard
       </div>

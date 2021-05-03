@@ -1,8 +1,8 @@
 <template>
-  <div class="jumbtron-fluid d-inline-flex">
-    <div class="row m-0">
+  <div class="jumbtron-fluid d-inline-flex col-12 p-0">
+    <div class="row m-0 col-12 p-0">
    
-      <div class="col-9 d-flex flex-column p-0">
+      <div class="col-12 col-sm-9 d-flex flex-column p-0">
         <div
           style="height: 80vh"
           class="border m-0 justify-content-end d-inline-flex flex-column p-1 "
@@ -45,7 +45,7 @@
       </div>
         
           
-          <div class="d-flex flex-column col-3  align-items-center p-2 bg-light  ">
+          <div class=" flex-column col-3  d-none d-sm-flex  align-items-center p-2 bg-light  ">
            
 
 

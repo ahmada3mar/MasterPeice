@@ -94,7 +94,7 @@
 										class="form-control"
 										v-model="date_of_birth"
 									/>
-									<label class="mt-2" for="gender">E-Mail</label>
+									<label class="mt-2" for="gender">Gender</label>
 									<select name="gender" id="gender" class="form-control">
 										<option value="Male">Male</option>
 										<option value="Female">Female</option>

@@ -34,3 +34,4 @@ Route::get('/show','HomeController@show');
 Route::post('/getevaluation/{id}','HomeController@getevaluation');
 Route::post('/editevaluation/{id}','HomeController@editevaluation');
 Route::post('/changePassword','HomeController@changePassword');
+Route::post('/contactus','HomeController@contactUs');

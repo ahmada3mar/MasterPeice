@@ -18,6 +18,9 @@ import profileEvaluation from "../pages/trainee/ViewEvaluation"
 import EditEvaluation from "../pages/admin/EditEvaluation"
 import TraineeHome from "../pages/trainee/home"
 import TraineeProfile from "../pages/trainee/Profile"
+import Chat from "../pages/chat/index"
+import ChatID from "../pages/chat/chat"
+import newChat from "../pages/chat/startnewchat"
 
 export default new Router({
 	mode: "history",
@@ -78,6 +81,22 @@ export default new Router({
 			path: "/ContactUs",
 			name: "ContactUs",
 			component: ContactUs,
+		},
+	
+		{
+			path: "/chat",
+			name: "Chat",
+			component: Chat,
+			children:[{
+				path:'/chat/:id',
+				name: "ChatID",
+			component: ChatID,
+			},
+			{
+				path:'/',
+				name: "new",
+			component: newChat,
+			}]
 		},
 		{
 			path: "/",

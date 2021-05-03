@@ -49,9 +49,11 @@
 				</li>
 			</ul>
 			<form class="form-inline">
-				<router-link class="btn btn-secondary btn-inverse mx-1" to="/login">
-				{{store.state.user.id ? 'Portal' : 'Sign In'}}
-					
+				<router-link to="/chat" class=" mx-1">
+				<i  class="nav-link nav-icon icon svg-mail m-0 p-0"/>
+			</router-link >
+			<router-link class=" mx-1" to="/login">
+				<i  class="nav-link nav-icon svg-avatar m-0 p-0"/>					
 				</router-link>
 				<div @click="logout" v-if="store.state.user.id " class="btn btn-secondary btn-inverse mx-1" >
 				Logout
@@ -84,3 +86,9 @@ export default {
 	}
 };
 </script>
+<style >
+	.svg-mail::after , .svg-avatar::after{
+		height: 2.25rem;
+		width: 2.25rem;
+	}
+</style>

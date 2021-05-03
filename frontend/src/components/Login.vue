@@ -63,7 +63,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Faild</h5>
               <!-- Boosted mod: using visually hidden text instead of aria-label -->
               <button type="button" class="close" data-dismiss="modal">
                 <span class="sr-only">Close live modal demo</span>
@@ -71,19 +71,13 @@
             </div>
             <div class="modal-body">{{ content }}</div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
+       
               <button
                 @click="show = !show"
                 type="button"
                 class="btn btn-primary"
               >
-                Save changes
+                OK
               </button>
             </div>
           </div>
@@ -129,8 +123,9 @@ export default {
       .then((res) => {
         if (res.data.id) {
           store.state.user = res.data;
+          this.fetchUsers()
           store.state.user.is_admin
-            ? this.fetchUsers()
+             ? this.$router.push("/admin")
             : this.$router.push("/trainee");
         }
       })
@@ -145,8 +140,9 @@ export default {
         })
         .then((res) => {
           store.state.user = res.data;
+          this.fetchUsers()
           store.state.user.is_admin
-            ? this.fetchUsers()
+            ? this.$router.push("/admin")
             : this.$router.push("/trainee");
             
         })
@@ -161,7 +157,7 @@ export default {
       .post("http://localhost:8000/getTrainee")
       .then((res) => (store.state.users = res.data))
       .catch((err) => console.log(err))
-      .then(this.$router.push("/admin"))
+      
       ;
   },
   },

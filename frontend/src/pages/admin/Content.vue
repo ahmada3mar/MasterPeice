@@ -1,6 +1,11 @@
 <template>
-  <div class="row m-0 justify-content-between  p-2 col-12">
-    <form @submit="submit" id="contentForm" class="bg-white my-4 p-3 col-12" enctype="multipart/form-data">
+  <div class="row m-0 justify-content-between p-2 col-12">
+    <form
+      @submit="submit"
+      id="contentForm"
+      class="bg-white my-4 p-3 col-12"
+      enctype="multipart/form-data"
+    >
       <div class="col-12">
         <h1>Manege Content</h1>
         <div class="input-group mb-3">
@@ -33,13 +38,12 @@
         ></textarea>
       </div>
       <div class="col-12 my-4 align-items-center d-flex flex-column col-md-3">
-        <img  name="image" class="col-12 px-0" v-bind:src="img" />
+        <img name="image" class="col-12 px-0" v-bind:src="img" />
         <input
           @change="updateimg"
           type="file"
           class="form-control col-12 px-0"
           name="image"
-          
         />
       </div>
 
@@ -51,9 +55,9 @@
         </button>
       </div>
     </form>
-   
+
     <div class="p-3 bg-white col-12 overflow-auto mb-4">
-     <b-row class="mb-3">
+      <b-row class="mb-3">
         <b-col md="3">
           <b-form-input
             v-model="filter"
@@ -73,70 +77,80 @@
             :fields="fields"
             :per-page="perPage"
             :current-page="currentPage"
-            v-if="posts.length > 0"
           >
             <template #cell(image)="data">
-              <img  v-bind:src="'http://localhost:8000/images/'+data.item.image" alt="">
+              <img
+                v-bind:src="'http://localhost:8000/images/' + data.item.image"
+                alt=""
+              />
             </template>
 
             <template v-slot:cell(actions)="data">
-             <router-link v-bind:to="'trainees/edit/' + data.item.id">
-            <b-button variant="danger mx-1" >Edit</b-button>
-            </router-link>
+              <router-link v-bind:to="'trainees/edit/' + data.item.id">
+                <b-button variant="danger mx-1">Edit</b-button>
+              </router-link>
               <b-button variant="danger mx-1" @click="deleteItem(data.item.id)"
                 >Delete</b-button
               >
             </template>
           </b-table>
-          <div
-            v-else
-            class="d-flex h-100 align-items-center justify-content-center"
-          >
-            <div class="spinner-grow text-primary" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow text-secondary" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-            <div class="spinner-grow bg-white" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
+
           <b-pagination
             v-model="currentPage"
             :total-rows="rows"
             :per-page="perPage"
             aria-controls="my-table"
-            v-if="posts.length > 0"
           ></b-pagination>
         </b-col>
       </b-row>
     </div>
+    <div
+      v-bind:style="{ visibility: show ? 'visible' : 'hidden' }"
+      v-bind:class="{ show: show }"
+      class="modal fade"
+      id="exampleModalLive"
+      tabindex="-1"
+      aria-labelledby="exampleModalLiveLabel"
+      style="display: block"
+      aria-modal="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+            <!-- Boosted mod: using visually hidden text instead of aria-label -->
+            <button type="button" class="close" data-dismiss="modal">
+              <span class="sr-only">Close live modal demo</span>
+            </button>
+          </div>
+          <div class="modal-body">Content Added successfully</div>
+          <div class="modal-footer">
+            <button @click="show = !show" type="button" class="btn btn-primary">
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="show" class="modal-backdrop fade show"></div>
   </div>
 </template>
 
 <script>
-import axios from "axios"
-import {store} from "../../store/store"
+import axios from "axios";
+import { store } from "../../store/store";
 export default {
   data() {
     return {
-       perPage: 10,
+      perPage: 10,
       currentPage: 1,
       filter: "",
-      store:store,
-      name:'',
-      description:'',
+      store: store,
+      name: "",
+      description: "",
+      show: false,
 
-       fields: [
-		"id",
-        "image",
-        "name",
-        "title",
-        "description",
-        "actions"
-      
-      ],
+      fields: ["id", "image", "name", "title", "description", "actions"],
       posts: [],
       img: "https://media.fdmckosovo.org/2020/07/placeholder.png",
     };
@@ -155,33 +169,25 @@ export default {
       axios
         .post("http://localhost:8000/addcontent", data)
         .then((res) => {
-        
-        store.state.contents.push(res.data);
-        this.img= "https://media.fdmckosovo.org/2020/07/placeholder.png";
-        this.name ='' ;
-        this.description=''
+          store.state.contents.push(res.data);
+          this.img = "https://media.fdmckosovo.org/2020/07/placeholder.png";
+          this.name = "";
+          this.description = "";
+          this.show = true;
         })
         .then((err) => console.log(err));
     },
-      deleteItem(id) {
-      axios.post('http://localhost:8000/deleteuser/' +  id).then(()=>{
-        var index =  store.state.users.findIndex((x) => x.id == id);
-         store.state.users.splice(index, 1);
-         index = this.posts.findIndex((x) => x.id == id);
-         this.posts.splice(index, 1);
-        }
-      )
+    deleteItem(id) {
+    console.log(id)
     },
-    
   },
-   computed: {
+  computed: {
     rows() {
       return this.posts.length;
     },
   },
-    mounted: function () {
-      this.posts = this.store.state.contents
-      
+  mounted: function () {
+    this.posts = this.store.state.contents;
   },
 };
 </script>

@@ -3,15 +3,14 @@
 		<div  class="row m-0 p-2 justify-content-around align-items-center my-md-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex ">
 				<div class="py-4">
-					<h1 class="title font-weight-bold ">About Us</h1>
+					<h1 class="title font-weight-bold ">{{content.filter(i=>i.name == 'about_us_cover' ).reverse()[0].title}}</h1>
 					<h3 class="description mt-2">
-						know about our mission, what does the academy offer, the eligibilty
-						criteria and all about our tarining courses and how to enroll.
+						{{content.filter(i=>i.name == 'about_us_cover' ).reverse()[0].description}}
 					</h3>
 				</div>
 			</div>
 			<div class="col-4 d-none d-md-block ">
-				<img class="col-12" src="../../assets/aboutUs.png" alt="Contact Us" />
+				<img class="col-12" :src="'http://localhost:8000/images/'+content.filter(i=>i.name == 'about_us_cover' ).reverse()[0].image  " alt="Contact Us" />
 			</div>
 		</div>
 
@@ -71,10 +70,13 @@
 </template>
 
 <script>
+import {store} from "../../store/store"
 export default {
 	name: "Tchnologies",
 	data() {
-		return {};
+		return {
+			content:store.state.contents
+		};
 	},
 };
 </script>

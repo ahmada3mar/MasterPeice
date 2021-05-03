@@ -168,6 +168,19 @@ class HomeController extends Controller
         $user->save();
         return $user->save();
      }
+
+     function contactUs(Request $request){
+
+         $data = $request->all();
+     
+         Mail::send('emails.contactus', $data, function($message) use($data) {
+        $message->to('ahmada3mar@gmail.com', 'Ahmad Emar')
+        ->subject($data['subject']);
+        $message->from('vpna3mar@gmail.com','Orange Coding Academy');
+        });
+
+        return true;
+     }
    
     
 

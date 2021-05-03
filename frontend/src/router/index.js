@@ -93,7 +93,7 @@ export default new Router({
 			component: ChatID,
 			},
 			{
-				path:'/chat/',
+				path:'/',
 				name: "new",
 			component: newChat,
 			}]

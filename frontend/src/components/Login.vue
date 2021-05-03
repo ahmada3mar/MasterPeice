@@ -129,8 +129,9 @@ export default {
       .then((res) => {
         if (res.data.id) {
           store.state.user = res.data;
+          this.fetchUsers()
           store.state.user.is_admin
-            ? this.fetchUsers()
+             ? this.$router.push("/admin")
             : this.$router.push("/trainee");
         }
       })
@@ -145,8 +146,9 @@ export default {
         })
         .then((res) => {
           store.state.user = res.data;
+          this.fetchUsers()
           store.state.user.is_admin
-            ? this.fetchUsers()
+            ? this.$router.push("/admin")
             : this.$router.push("/trainee");
             
         })
@@ -161,7 +163,7 @@ export default {
       .post("http://localhost:8000/getTrainee")
       .then((res) => (store.state.users = res.data))
       .catch((err) => console.log(err))
-      .then(this.$router.push("/admin"))
+      
       ;
   },
   },

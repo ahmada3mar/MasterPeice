@@ -15,7 +15,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-10 d-flex flex-column p-2">
+      <div class="col-8 d-flex flex-column p-2">
         <div
           style="height: 80vh"
           class="border m-0 justify-content-end d-inline-flex flex-column p-1 "
@@ -56,6 +56,10 @@
           </div>
         </div>
       </div>
+      <div class="d-flex flex-column flex-grow-1 col-2">
+          <img :src=" 'http://localhost:8000/images/' + store.state.users.filter(i=> i.id == $route.params.id)[0].avatar" alt="">
+      
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +75,7 @@ export default {
   data() {
     return {
       user: store.state.user,
+      store:store,
       chatBox: [],
       chat: "",
       rooms:[]

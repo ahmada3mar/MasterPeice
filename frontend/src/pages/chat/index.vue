@@ -15,42 +15,9 @@
           </li>
         </ul>
       </div>
-      <div class="col-10 d-flex flex-column p-2">
-        <div
-          style="height: 80vh"
-          class="border m-0 justify-content-end d-inline-flex flex-column p-1"
-        >
-          <div
-            :key="chat"
-            v-for="chat in chatBox"
-            :class="chat.name == msg.name && ' align-self-end'"
-          >
-            <div
-              :class="chat.name == msg.name ? ' bg-primary' : 'bg-info'"
-              class="rounded-pill flex-row p-2 d-inline-flex my-1"
-            >
-              <img
-                height="25px"
-                width="25px"
-                class="rounded-circle"
-                :src="'http://localhost:8000/images/' + user.avatar"
-                alt=""
-              />
-              <div class="mx-2 d-flex align-items-center">
-                {{ chat.name }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-row m-0">
-          <input v-model="chat" type="text" class="form-control col-11" />
-          <div
-            @click="send"
-            class="btn btn-primary col-1 d-flex justify-content-center"
-          >
-            <i class="fa fa-paper-plane"></i>
-          </div>
-        </div>
+      <div class="col-10 p-0">
+
+     <router-view/>
       </div>
     </div>
   </div>

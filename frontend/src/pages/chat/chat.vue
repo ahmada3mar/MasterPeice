@@ -1,26 +1,13 @@
 <template>
-  <div class="jumbtron-fluid">
+  <div class="jumbtron-fluid d-inline-flex">
     <div class="row m-0">
-      <div class="col-2 d-flex flex-column flex-grow-1 bg-secondary">
-        <ul class="nav-item">
-         <li v-for="room in rooms" :key="room.key" class="m-0 mt-1">
-            <router-link class="link" v-bind:to="'/chat/' + room.key">
-              <div
-                
-                class="itemtabe"
-              >
-                {{room.key}}
-              </div>
-            </router-link>
-          </li>
-        </ul>
-      </div>
-      <div class="col-8 d-flex flex-column p-2">
+   
+      <div class="col-9 d-flex flex-column p-0">
         <div
           style="height: 80vh"
           class="border m-0 justify-content-end d-inline-flex flex-column p-1 "
         >
-        <div id='box' class="box overflow-auto px-2">
+        <div id='box' class="box overflow-auto px-2 d-flex flex-column-reverse">
 
           <div
             :key="chat"
@@ -36,7 +23,7 @@
                 height="25px"
                 width="25px"
                 class="rounded-circle"
-                :src="'http://localhost:8000/images/' + user.avatar"
+                :src=" chat.sender == user.name ? 'http://localhost:8000/images/' + user.avatar : 'http://localhost:8000/images/' + recever.avatar"
                 alt=""
               />
               <div class="mx-2 d-flex align-items-center">
@@ -56,10 +43,32 @@
           </div>
         </div>
       </div>
-      <div class="d-flex flex-column flex-grow-1 col-2">
-          <img :src=" 'http://localhost:8000/images/' + store.state.users.filter(i=> i.id == $route.params.id)[0].avatar" alt="">
+        
+          
+          <div class="d-flex flex-column col-3  align-items-center p-2 bg-light  ">
+           
+
+
+<div class="col-12">
+
+
+                  <img class="col-12 mb-2" :src=" 'http://localhost:8000/images/' +  recever.avatar "  alt="">
+                  <div class="col-12 d-flex flex-column">
+
+                    <label ><i class="fa mx-1 fa-user"></i>{{recever.name}}</label>
+                    <label ><i class="fa mx-1 fa-mobile"></i>{{recever.mobile}}</label>
+                    <label ><i class="fa mx-1 fa-envelope"></i>{{recever.email}}</label>
+                    <label ><i class="fa mx-1 fa-map-marker"></i>{{recever.address}}</label>
+                  </div>
+</div>
+                    
+        
+            
+                  
+          </div>
       
-      </div>
+      
+    
     </div>
   </div>
 </template>
@@ -75,6 +84,7 @@ export default {
   data() {
     return {
       user: store.state.user,
+      recever:store.state.users.filter(i=>i.id == this.$route.params.id)[0],
       store:store,
       chatBox: [],
       chat: "",
@@ -94,7 +104,6 @@ export default {
         newData.set(msg);
         newData = db.database().ref('Users/'+ this.$route.params.id +'/chats/'+this.user.id).push();
         newData.set(msg);
-        document.getElementById('box').scrollTo(0,1000)
         this.chat = '';
     },
   },
@@ -111,6 +120,7 @@ export default {
         items.push(item)
       });
       this.rooms = items
+  
     });
     db.database().ref('Users/'+ this.user.id +'/chats/'+ this.$route.params.id.toString()).on('value', (snapshot) => { 
       var items = []   
@@ -119,12 +129,16 @@ export default {
         item.key = doc.key
         items.push(item)
       });
-      this.chatBox = items
-      console.log(this.chatBox)
+      this.chatBox = items.reverse()
+      
+     
+     
+      
     });
   },
   watch: {
     '$route.params.id': function (id) {
+     this.recever=this.store.state.users.filter(i=>i.id == this.$route.params.id)[0]
       db.database().ref('Users/'+ this.user.id +'/chats/'+ id.toString()).on('value', (snapshot) => { 
       var items = []   
       snapshot.forEach((doc) => {
@@ -132,7 +146,11 @@ export default {
         item.key = doc.key
         items.push(item)
       });
-      this.chatBox = items
+      this.chatBox = items.reverse()
+      // this.chatBox = items
+      // this.chatBox.reverse()
+      
+      
     });
     }
   },

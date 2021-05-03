@@ -20,6 +20,7 @@ import TraineeHome from "../pages/trainee/home"
 import TraineeProfile from "../pages/trainee/Profile"
 import Chat from "../pages/chat/index"
 import ChatID from "../pages/chat/chat"
+import newChat from "../pages/chat/startnewchat"
 
 export default new Router({
 	mode: "history",
@@ -81,15 +82,21 @@ export default new Router({
 			name: "ContactUs",
 			component: ContactUs,
 		},
-		{
-			path: "/chat/:id",
-			name: "ChatID",
-			component: ChatID,
-		},
+	
 		{
 			path: "/chat",
 			name: "Chat",
 			component: Chat,
+			children:[{
+				path:'/chat/:id',
+				name: "ChatID",
+			component: ChatID,
+			},
+			{
+				path:'/chat/',
+				name: "new",
+			component: newChat,
+			}]
 		},
 		{
 			path: "/",

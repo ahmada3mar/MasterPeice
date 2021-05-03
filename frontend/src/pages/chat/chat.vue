@@ -18,15 +18,18 @@
       <div class="col-10 d-flex flex-column p-2">
         <div
           style="height: 80vh"
-          class="border m-0 justify-content-end d-inline-flex flex-column p-1"
+          class="border m-0 justify-content-end d-inline-flex flex-column p-1 "
         >
+        <div id='box' class="box overflow-auto px-2">
+
           <div
             :key="chat"
             v-for="chat in chatBox"
-            :class="chat.name == msg.name && ' align-self-end'"
+            :style="chat.sender == user.name && ' display:grid'"
           >
             <div
-              :class="chat.name == msg.name ? ' bg-primary' : 'bg-info'"
+                style="justify-self:end"
+              :class="chat.sender == user.name ? ' bg-primary' : 'bg-info'"
               class="rounded-pill flex-row p-2 d-inline-flex my-1"
             >
               <img
@@ -39,6 +42,7 @@
               <div class="mx-2 d-flex align-items-center">
                 {{ chat.name }}
               </div>
+        </div>
             </div>
           </div>
         </div>
@@ -69,19 +73,23 @@ export default {
       user: store.state.user,
       chatBox: [],
       chat: "",
-      msg: { name: "ahmad" },
       rooms:[]
     };
   },
   methods: {
      send() {
-      let newData = db.database().ref('Users/'+ this.user.id +'/chats/1').push();
-        newData.set({
+         let msg = {
             type: 'newmsg',
-           
+            sender:this.user.name,
             name: this.chat,
             sendDate: Date()
-        });
+        };
+        
+      let newData = db.database().ref('Users/'+ this.user.id +'/chats/'+this.$route.params.id).push();
+        newData.set(msg);
+        newData = db.database().ref('Users/'+ this.$route.params.id +'/chats/'+this.user.id).push();
+        newData.set(msg);
+        document.getElementById('box').scrollTo(0,1000)
         this.chat = '';
     },
   },
@@ -93,11 +101,36 @@ export default {
       snapshot.forEach((doc) => {
         let item = doc.val()
         item.key = doc.key
+        item.sender = doc.sender
+        
         items.push(item)
       });
       this.rooms = items
     });
-  }
+    db.database().ref('Users/'+ this.user.id +'/chats/'+ this.$route.params.id.toString()).on('value', (snapshot) => { 
+      var items = []   
+      snapshot.forEach((doc) => {
+        let item = doc.val()
+        item.key = doc.key
+        items.push(item)
+      });
+      this.chatBox = items
+      console.log(this.chatBox)
+    });
+  },
+  watch: {
+    '$route.params.id': function (id) {
+      db.database().ref('Users/'+ this.user.id +'/chats/'+ id.toString()).on('value', (snapshot) => { 
+      var items = []   
+      snapshot.forEach((doc) => {
+        let item = doc.val()
+        item.key = doc.key
+        items.push(item)
+      });
+      this.chatBox = items
+    });
+    }
+  },
 };
 </script>
 <style scoped>
@@ -118,5 +151,18 @@ export default {
 .active {
   background: #161616;
   color: orange;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #161616; 
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #af5200; 
 }
 </style>

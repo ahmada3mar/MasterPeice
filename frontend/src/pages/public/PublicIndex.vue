@@ -329,7 +329,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 /* Carousel */
 .carousel-caption {
 	bottom: 3rem;

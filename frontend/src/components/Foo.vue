@@ -1,9 +1,9 @@
 <template>
 	<div class="homcontainer d-flex  mx-0 p-0">
-		<div v-if="this.store.state.user.is_admin" class="left-sidedashboard bg-secondary col-2">
+		<div v-if="this.store.state.user.is_admin" class="left-sidedashboard bg-secondary col-md-2  d-md-block d-none">
 			<Nav />
 		</div>
-		<div v-bind:class="!this.store.state.user.is_admin ? 'col-12' : null" style="background:#f2f2f2" class="content col-10">
+		<div v-bind:class="!this.store.state.user.is_admin ? 'col-12 col-md-12' : null" style="background:#f2f2f2" class="content  col-12 col-md-10">
 			<router-view />
 		</div>
 	</div>

@@ -4,7 +4,7 @@
       <div class="card mb-4">
         <div class="card-header">
           <i class="fas fa-chart-bar mr-1"></i>
-          Bar Chart Example
+          Overall
         </div>
         <div class="card-body">
           <canvas id="customtestsChartpi" width="100%" height="50"></canvas>
@@ -18,7 +18,7 @@
       <div class="card mb-4">
         <div class="card-header">
           <i class="fas fa-chart-bar mr-1"></i>
-          Bar Chart Example
+          Male to Female
         </div>
         <div class="card-body d-inline-flex justify-content-center">
           <canvas id="a5"></canvas>
@@ -32,7 +32,7 @@
       <div class="card mb-4">
         <div class="card-header">
           <i class="fas fa-chart-bar mr-1"></i>
-          Bar Chart Example
+          Governorate Distribution
         </div>
         <div class="card-body">
           <canvas id="customtestsChartpi2" width="100%" height="30"></canvas>
@@ -57,10 +57,10 @@ export default {
     new Chart("customtestsChartpi", {
       type: "bar",
       data: {
-        labels: ["Normal", "Hypo", "Hyper", "test", "jb"],
+        labels: ["Need Attention", "Poor", "Good", "Very Good", "Excellent"],
         datasets: [
           {
-            label: "Female ",
+            label: ['Overall' ],
             data: [5, 5 + 7, 5 + 4, 7, 8],
             backgroundColor: [
               "#4bb4e6",
@@ -105,7 +105,7 @@ export default {
         ],
         datasets: [
           {
-            label: "Female ",
+            label: "Trainee",
             data: [5, 0, 2, 1, 5, 0, 4, 3, 4, 0, 3, 0, 0],
             backgroundColor: ["orange"],
 
@@ -131,10 +131,10 @@ export default {
     new Chart("a5", {
       type: "bar",
       data: {
-        labels: ["Normal", "Hypo"],
+        labels: ["Male", "Female"],
         datasets: [
           {
-            label: "Female ",
+            label: "Female > Male ",
             data: [5, 5 + 7],
             backgroundColor: ["#b5e8f7", "#ffe8f7"],
 

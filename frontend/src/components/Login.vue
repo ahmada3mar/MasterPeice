@@ -3,7 +3,7 @@
     v-if="!store.state.user.id && !store.state.loading"
     class="bodyfull row flex-grow-1 m-0"
   >
-    <div class="left-side col-4 p-0">
+    <div class="left-side bodyfull col-12 col-md-4 p-0">
       <div style="padding: 50px 35px">
         <img width="70" src="../assets/logo.png" alt="Orange Logo" />
         <h1 class="mt-5">
@@ -15,14 +15,14 @@
           Watch exclusive series, Hollywood movies, Arabic series, kids’ shows,
           documentaries and more.
         </p>
-        <div class="btn btn-primary">{{ this.$route.path }}</div>
+        <a href="#login" class="btn btn-primary">Login</a>
       </div>
     </div>
 
     <div
-      class="right-side d-inline-flex align-items-center justify-content-center col flex-column"
+      class="right-side bodyfull d-inline-flex align-items-center justify-content-center col flex-column col-12 col-md-8"
     >
-      <div class="form col-8">
+      <div id="login" class="form col-8  ">
         <h2 class="mb-5">
           Sign in to <span class="text-primary">Orange</span>
         </h2>
@@ -166,6 +166,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
+html {
+  scroll-behavior: smooth;
+}
 h3 {
   margin: 40px 0 0;
 }

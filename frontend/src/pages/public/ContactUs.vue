@@ -1,8 +1,8 @@
 <template>
   <div class="background">
-    <div class="row m-0 p-md-5 p-0 justify-content-between mb-5">
+    <div class="row m-0 p-md-5 p-0 justify-content-between  mb-5">
       <div class="col-12 col-md-6 align-items-center d-inline-flex">
-        <div class="py-4">
+        <div class="py-4 mb-5 my-md-1 mt-4">
           <h1 class="title font-weight-bold">Contact Us</h1>
           <h3 class="description mt-2">
             Stay in touch and updated, feel free to ask if you have any further
@@ -16,8 +16,8 @@
       </div>
     </div>
 
-    <div class="row m-0 p-md-5 p-0 justify-content-around mb-5">
-      <div class="form col-5">
+    <div class="row m-0  p-2 justify-content-around mb-5">
+      <div class="form col-12 col-md-5">
         <div class="d-flex flex-column-reverse mb-3">
           <input type="text" class="form-control" v-model="name" id="name" />
           <label id="labelname" htmlFor="name">Full Name</label>
@@ -45,12 +45,12 @@
         </div>
         <div
           @click="send"
-          class="btn btn-primary col-12 justify-content-center mb-3"
+          class="btn btn-primary col-12 justify-content-center mb-3 d-none d-md-block"
         >
           Submit
         </div>
       </div>
-      <div class="col-5 d-flex flex-column">
+      <div class="col-12 col-md-5 d-flex flex-column">
         <div class="d-flex flex-column-reverse mb-3">
           <select v-model="subject" class="form-control" id="exampleSelect1">
             <option>Soft Skills</option>
@@ -64,11 +64,18 @@
         </div>
         <div class="d-flex flex-column-reverse mb-3 flex-grow-1">
           <textarea
+          rows="10"
             v-model="message"
-            class="form-control flex-grow-1"
+            class="form-control flex-grow-1 "
             id="email"
           ></textarea>
           <label id="labelEmail" htmlFor="email">Message</label>
+        </div>
+         <div
+          @click="send"
+          class="btn btn-primary col-12 justify-content-center mb-3 d-block d-md-none"
+        >
+          Submit
         </div>
       </div>
     </div>

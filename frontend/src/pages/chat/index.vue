@@ -1,7 +1,7 @@
 <template>
   <div class="jumbtron-fluid">
     <div class="row m-0">
-      <div style="padding-right: 2px;" class="col-2  flex-column flex-grow-1 d-none d-sm-flex  bg-black">
+      <div style="padding-right: 2px;" class="col-2  flex-column flex-grow-1 d-none d-lg-flex  bg-black">
         <ul class="nav-item overflow-auto">
          <li v-for="room in rooms" :key="room.key" class="m-0 mt-1">
             <router-link class="link" v-bind:to="'/chat/' + room.key">
@@ -21,7 +21,7 @@
    
         </ul>
       </div>
-      <div class="col-sm-10 col-12 p-0">
+      <div class="col-lg-10 col-12 p-0">
 
      <router-view/>
       </div>

@@ -11,14 +11,18 @@
             <router-link class="link" :to="'/chat/' + item.id">
               <div
                 v-bind:class="$route.path == 'chat/' + item.id && 'active'"
-                class="itemtabe"
+                class="itemtabe d-flex "
               >
-              <h6>
+              <img width="50px" height="50px" :src="'http://localhost:8000/images/'+item.avatar" class="rounded-circle">
+              <h6 class="mx-2 my-0 d-flex align-items-center text-left">
 
                 {{ item.name }}
+                <br>
+                {{ item.email }}
               </h6>
               </div>
             </router-link>
+              <hr class="m-1">
           </li>
         </ul>
       </div>
@@ -66,8 +70,9 @@ export default {
   overflow: auto;
   display: none;
   top: 61%;
-  background: rgba(245, 245, 245, 0.452);
+  background: rgba(0, 0, 0, 0.425);
   border: 1px solid black;
+  border-radius: 5px;
   z-index: 999;
 }
 .nav-item {
@@ -77,10 +82,10 @@ export default {
 }
 
 .itemtabe {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   width: 100%;
-  color: #161616;
+  color: whitesmoke;
 
 }
 

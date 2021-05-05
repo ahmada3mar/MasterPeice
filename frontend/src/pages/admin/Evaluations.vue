@@ -356,6 +356,35 @@
         </b-col>
       </b-row>
     </div>
+    <div
+      v-bind:style="{ visibility: show ? 'visible' : 'hidden' }"
+      v-bind:class="{ show: show }"
+      class="modal fade"
+      id="exampleModalLive"
+      tabindex="-1"
+      aria-labelledby="exampleModalLiveLabel"
+      style="display: block"
+      aria-modal="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+            <!-- Boosted mod: using visually hidden text instead of aria-label -->
+            <button type="button" class="close" data-dismiss="modal">
+              <span class="sr-only">Close live modal demo</span>
+            </button>
+          </div>
+          <div class="modal-body">Evaluation Added successfully</div>
+          <div class="modal-footer">
+            <button @click="show = !show" type="button" class="btn btn-primary">
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="show" class="modal-backdrop fade show"></div>
   </div>
 </template>
 
@@ -367,16 +396,13 @@ import { store } from "../../store/store";
 export default {
   data() {
     return {
-      
       editor: ClassicEditor,
       perPage: 10,
       currentPage: 1,
       filter: "",
-       editorConfig: {
-      
-    },
-                
-        
+      show: false,
+      editorConfig: {},
+
       fields: [
         "id",
         "agility",
@@ -395,10 +421,9 @@ export default {
         "https://www.shareicon.net/data/512x512/2016/08/05/806962_user_512x512.png",
       user: store.state.users.filter((i) => i.id == this.$route.params.id)[0],
       editorData: "<p style='height:250px'></p>",
-      
     };
   },
-   computed: {
+  computed: {
     rows() {
       return this.posts.length;
     },
@@ -409,9 +434,13 @@ export default {
       this.$router.push("/admin/trainees/edit/" + this.$route.params.id);
     },
     save() {
-      axios.post('http://localhost:8000/addevaluation', this.data)
-      .then(res=> this.posts.push(res.data) )
-     
+      axios
+        .post("http://localhost:8000/addevaluation", this.data)
+        .then((res) => {
+          this.posts.push(res.data);
+          this.show = true;
+          this.data = { user_id: this.$route.params.id };
+        });
     },
     view(i) {
       store.state.evaluation = i;

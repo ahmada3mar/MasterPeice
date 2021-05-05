@@ -209,9 +209,9 @@
 
 						<template v-slot:cell(actions)="data">
 							
-								<b-button @click="$router.push('trainees/evaluation/' + data.item.id)" variant="danger mx-1">View</b-button>
+								<b-button @click="$router.push('/admin/trainees/evaluation/' + data.item.id)" variant="danger mx-1">View</b-button>
 				
-							<router-link v-bind:to="'trainees/edit/' + data.item.id">
+							<router-link v-bind:to="'/admin/trainees/edit/' + data.item.id">
 								<b-button variant="danger mx-1">Edit</b-button>
 							</router-link>
 							<b-button variant="danger mx-1" @click="deleteItem(data.item.id)"

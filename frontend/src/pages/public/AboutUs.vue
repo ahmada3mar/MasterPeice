@@ -1,20 +1,38 @@
 <template>
 	<div class="background">
-		<div  class="row m-0 p-md-5 p-0 justify-content-between  my-5 ">
+		<div class="row m-0 p-md-5 p-0 justify-content-between  my-5 ">
 			<div class="col-12 col-md-6 align-items-center d-inline-flex">
 				<div class="py-4 mb-5 my-md-1 mt-4">
-					<h1 class="title font-weight-bold">{{content.filter(i=>i.name == 'about_us_cover' ).reverse()[0].title}}</h1>
+					<h1 class="title font-weight-bold">
+						{{
+							content.filter((i) => i.name == "about_us_cover").reverse()[0]
+								.title
+						}}
+					</h1>
 					<h3 class="description mt-2">
-						{{content.filter(i=>i.name == 'about_us_cover' ).reverse()[0].description}}
+						{{
+							content.filter((i) => i.name == "about_us_cover").reverse()[0]
+								.description
+						}}
 					</h3>
 				</div>
 			</div>
 			<div class="col-6 d-none d-md-block mb-5">
-				<img class="col-12" :src="'http://localhost:8000/images/'+content.filter(i=>i.name == 'about_us_cover' ).reverse()[0].image  " alt="Contact Us" />
+				<img
+					class="col-12"
+					:src="
+						'http://localhost:8000/images/' +
+							content.filter((i) => i.name == 'about_us_cover').reverse()[0]
+								.image
+					"
+					alt="Contact Us"
+				/>
 			</div>
 		</div>
 
-		<div class="row m-0 my-5 p-md-5  p-2 justify-content-between flex-column py-5 ">
+		<div
+			class="row m-0 my-5 p-md-5  p-2 justify-content-between flex-column py-5 "
+		>
 			<div class="col-12 col-md-6 align-items-center d-inline-flex mt-5">
 				<div class="py-4 mt-5">
 					<h2 class="title font-weight-bold mt-2">What’s in it for you?</h2>
@@ -70,12 +88,12 @@
 </template>
 
 <script>
-import {store} from "../../store/store"
+import { store } from "../../store/store";
 export default {
 	name: "Tchnologies",
 	data() {
 		return {
-			content:store.state.contents
+			content: store.state.contents,
 		};
 	},
 };
@@ -115,7 +133,7 @@ export default {
 .descriptionAbout {
 	font-weight: 300;
 }
-li{
+li {
 	display: list-item;
 }
 </style>

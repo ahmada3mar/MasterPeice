@@ -8,7 +8,7 @@
         </router-link>
     </li>
    
-    <li v-if="user.is_admin == 2" class="m-0 mt-1">
+    <li  class="m-0 mt-1">
         <router-link class="link " to="/admin/trainees">
       <div v-bind:class="this.$route.path.startsWith('/admin/trainees') && 'active' " class="itemtabe">
         Manage Trainees

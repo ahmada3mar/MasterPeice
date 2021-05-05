@@ -7,27 +7,29 @@
       </div>
         </router-link>
     </li>
-    <li class="m-0 mt-1">
+   
+    <li  class="m-0 mt-1">
         <router-link class="link " to="/admin/trainees">
       <div v-bind:class="this.$route.path.startsWith('/admin/trainees') && 'active' " class="itemtabe">
         Manege Trainees
       </div>
         </router-link>
     </li>
-    <li class="m-0 mt-1">
+    <li v-if="user.is_admin == 2" class="m-0 mt-1">
         <router-link class="link " to="/admin/admins">
       <div v-bind:class="this.$route.path.startsWith('/admin/admins') && 'active' " class="itemtabe">
         Manege Admins
       </div>
         </router-link>
     </li>
-    <li class="m-0 mt-1">
+    <li v-if="user.is_admin == 2" class="m-0 mt-1">
         <router-link class="link " to="/admin/contents">
       <div v-bind:class="this.$route.path.startsWith('/admin/contents') && 'active' " class="itemtabe">
         Manege Content
       </div>
         </router-link>
     </li>
+    
     <li class="m-0 mt-1">
         <router-link class="link " to="/admin/events">
       <div v-bind:class="this.$route.path.startsWith('/admin/events') && 'active' " class="itemtabe">
@@ -39,8 +41,14 @@
   </ul>
 </template>
 <script>
+import {store} from "../store/store"
 export default {
-    name:"Nav"
+    name:"Nav",
+    data(){
+      return{
+        user:store.state.user
+      }
+    }
 }
 </script>
 <style scoped>

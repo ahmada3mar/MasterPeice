@@ -82,14 +82,14 @@ class HomeController extends Controller
 
         $trainees = User::all() ;
         // dd($trainees);
-        return $trainees ;
+        return $trainees;
     }
 
     function deleteUser($id){
 
         User::find($id)->delete() ;
         // dd($trainees);
-        return "done" ;
+        return "Done" ;
     }
 
     function addContent(Request $request){
